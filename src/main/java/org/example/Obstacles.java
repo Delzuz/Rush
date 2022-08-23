@@ -21,16 +21,6 @@ public class Obstacles {
     public void setPosX(int posX) {
         this.posX = posX;
     }
-/*
-    public Obstacles(int size, int posX, int posY, Terminal terminal, boolean continueReadingInput) {
-        this.size = size;
-        this.posX = posX;
-        this.posY = posY;
-        this.terminal = terminal;
-        this.continueReadingInput = continueReadingInput;
-    }
-
-     */
 
     public Obstacles(int size, int posX, int posY, Terminal terminal) {
         this.size = size;

@@ -59,21 +59,8 @@ public class Main {
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
 
-        /* Create obstacles array
-        Position[] obstacles = new Position[10];
-        for(int i = 0;i<10;i++){
-            obstacles[i] = new Position(10+i, 10);
-        }
 
-        // Use obstacles array to print to lanterna
-        for (Position p : obstacles) {
-            terminal.setCursorPosition(p.x, p.y);
-            terminal.putCharacter(block);
-        }
-
-
-
-
+        /*
         o = new Obstacles(2,40,4,terminal);
         o.createObstacles();
         o2 = new Obstacles(2,40,2,terminal);
@@ -156,7 +143,6 @@ public class Main {
     }
 
     private static boolean handleObstacles (List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {
-        Random r = new Random();
         for (Obstacles obstacle: obstacles) {
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
             terminal.putCharacter(' ');
