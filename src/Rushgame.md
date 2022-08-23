@@ -28,3 +28,7 @@ Lvl 1
         Spelare blir röd av död
         Game Over när man dör
         Spel meny med 2 val - starta eller exit
+
+
+Buggar som kan fixas när vi har tid
+- system exit när man dör 
