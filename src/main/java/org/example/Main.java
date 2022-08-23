@@ -169,7 +169,7 @@ public class Main {
 
         terminal.flush();
         for (Obstacles obs: obstacles) {
-            if (obs.posX == player.x && obs.posY == player.y) {;
+            if (obs.posX == player.x && obs.posY == player.y) {
                 terminal.bell();
                 System.out.println("GAME OVER!");
                 return false;
