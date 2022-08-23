@@ -11,6 +11,16 @@ public class Obstacles {
     private int posX;
     private int posY;
     private Terminal terminal;
+    Position[] obstacles;
+    boolean continueReadingInput;
+
+    public Obstacles(int size, int posX, int posY, Terminal terminal, boolean continueReadingInput) {
+        this.size = size;
+        this.posX = posX;
+        this.posY = posY;
+        this.terminal = terminal;
+        this.continueReadingInput = continueReadingInput;
+    }
 
     public Obstacles(int size, int posX, int posY, Terminal terminal) {
         this.size = size;
@@ -21,7 +31,7 @@ public class Obstacles {
 
 
     public void createObstacles () throws IOException {
-        Position[] obstacles = new Position[size];
+        obstacles = new Position[size];
         for (int i = 0; i < size; i++) {
             obstacles[i] = new Position(posX, posY + i);
         }
@@ -31,6 +41,17 @@ public class Obstacles {
             terminal.putCharacter('\u2588');
 
         }
+    }
+
+    public void collisionObstacles (int playerx, int playery) throws IOException {
+        for (Position ob : obstacles) {
+            if (ob.x == playerx && ob.y == playery) {
+                terminal.bell();
+                System.out.println("GAME OVER!");
+                continueReadingInput = false;
+            }
+        }
+
     }
 
 
