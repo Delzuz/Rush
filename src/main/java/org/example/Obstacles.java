@@ -14,6 +14,7 @@ public class Obstacles {
     Position[] obstacles;
     boolean continueReadingInput;
 
+    /*
     public Obstacles(int size, int posX, int posY, Terminal terminal, boolean continueReadingInput) {
         this.size = size;
         this.posX = posX;
@@ -21,6 +22,8 @@ public class Obstacles {
         this.terminal = terminal;
         this.continueReadingInput = continueReadingInput;
     }
+
+     */
 
     public Obstacles(int size, int posX, int posY, Terminal terminal) {
         this.size = size;
@@ -48,11 +51,19 @@ public class Obstacles {
             if (ob.x == playerx && ob.y == playery) {
                 terminal.bell();
                 System.out.println("GAME OVER!");
-                continueReadingInput = false;
+                System.exit(0);
             }
         }
 
     }
+    /*
+    public void moveObstacle (int size, int y) throws IOException {
+        for (int i = 60; i > 0; i--) {
+
+        }
+    }
+    
+     */
 
 
 

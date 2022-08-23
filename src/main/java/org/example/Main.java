@@ -70,7 +70,7 @@ public class Main {
          */
 
 
-        Obstacles o = new Obstacles(2,30,4,terminal, true);
+        Obstacles o = new Obstacles(2,30,4,terminal);
         o.createObstacles();
         Obstacles o2 = new Obstacles(2,40,2,terminal);
         o2.createObstacles();
