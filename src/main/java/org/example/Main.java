@@ -68,11 +68,13 @@ public class Main {
 
 
          */
-        Obstacles o = new Obstacles(10,10,10,terminal);
+
+
+        Obstacles o = new Obstacles(2,30,4,terminal, true);
         o.createObstacles();
-        Obstacles o2 = new Obstacles(5,5,5,terminal);
+        Obstacles o2 = new Obstacles(2,40,2,terminal);
         o2.createObstacles();
-        Obstacles o3 = new Obstacles(8,8,8,terminal);
+        Obstacles o3 = new Obstacles(3,50,8,terminal);
         o3.createObstacles();
 
 
@@ -85,6 +87,7 @@ public class Main {
             KeyStroke keyStroke = null;
 
             do {
+                Thread.sleep(5);
                 keyStroke = terminal.pollInput();
             }
             while (keyStroke == null);
@@ -98,16 +101,16 @@ public class Main {
 
             switch (keyStroke.getKeyType()) {
                 case ArrowDown:
-                    player.y += 2;
+                    player.y += 1;
                     break;
                 case ArrowUp:
-                    player.y -= 2;
+                    player.y -= 1;
                     break;
                 case ArrowRight:
-                    player.x += 2;
+                    player.x += 1;
                     break;
                 case ArrowLeft:
-                    player.x -= 2;
+                    player.x -= 1;
                     break;
             }
 
@@ -117,6 +120,9 @@ public class Main {
             terminal.setCursorPosition(player.x, player.y);
             terminal.putCharacter(playerCharacter);
 
+            o.collisionObstacles(player.x,player.y);
+            o2.collisionObstacles(player.x,player.y);
+            o3.collisionObstacles(player.x,player.y);
 
 
             /* Is the player alive? obstacles for lvl 1
