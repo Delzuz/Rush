@@ -7,7 +7,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 import java.util.ArrayList;
 import java.util.List;
 /*
-RUSH
+        RUSH
         Lvl 1
         * Hinder kommer och går mot en
 
@@ -53,13 +53,13 @@ public class Main {
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
 
-// Create obstacles array
+        // Create obstacles array
         Position[] obstacles = new Position[10];
         for(int i = 0;i<10;i++){
             obstacles[i] = new Position(10+i, 10);
         }
 
-        // Use obsticles array to print to lanterna
+        // Use obstacles array to print to lanterna
         for (Position p : obstacles) {
             terminal.setCursorPosition(p.x, p.y);
             terminal.putCharacter(block);
@@ -67,11 +67,6 @@ public class Main {
 
         terminal.flush();
 
-        List<Position> monsters = new ArrayList<>();
-        monsters.add(new Position(3, 3));
-        monsters.add(new Position(23, 23));
-        monsters.add(new Position(23, 3));
-        monsters.add(new Position(3, 23));
 
         boolean continueReadingInput = true;
         while (continueReadingInput) {
@@ -110,31 +105,11 @@ public class Main {
             terminal.setCursorPosition(player.x, player.y);
             terminal.putCharacter(playerCharacter);
 
-            // Handle monsters
-            for (Position monster : monsters) {
-                terminal.setCursorPosition(monster.x, monster.y);
-                terminal.putCharacter(' ');
 
-                if (player.x > monster.x) {
-                    monster.x++;
-                }
-                else if (player.x < monster.x) {
-                    monster.x--;
-                }
-                if (player.y > monster.y) {
-                    monster.y++;
-                }
-                else if (player.y < monster.y) {
-                    monster.y--;
-                }
 
-                terminal.setCursorPosition(monster.x, monster.y);
-                terminal.putCharacter('X');
-            }
-
-            // Is the player alive?
-            for (Position monster : monsters) {
-                if (monster.x == player.x && monster.y == player.y) {
+            // Is the player alive? obstacles for lvl 1
+            for (Position ob : obstacles) {
+                if (ob.x == player.x && ob.y == player.y) {
                     continueReadingInput = false;
                     terminal.bell();
                     System.out.println("GAME OVER!");
