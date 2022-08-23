@@ -38,6 +38,10 @@ import java.util.List;
         Game Over när man dör
         Spel meny med 2 val - starta eller exit*/
 public class Main {
+
+    static Obstacles o;
+    static Obstacles o2;
+    static Obstacles o3;
     public static void main(String[] args) throws Exception {
         TerminalSize ts = new TerminalSize(60,15);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
@@ -67,16 +71,19 @@ public class Main {
 
 
 
-         */
 
-
-        Obstacles o = new Obstacles(2,30,4,terminal);
+        o = new Obstacles(2,40,4,terminal);
         o.createObstacles();
-        Obstacles o2 = new Obstacles(2,40,2,terminal);
+        o2 = new Obstacles(2,40,2,terminal);
         o2.createObstacles();
-        Obstacles o3 = new Obstacles(3,50,8,terminal);
+        o3 = new Obstacles(3,40,8,terminal);
         o3.createObstacles();
 
+         */
+        List<Obstacles> obstacles = new ArrayList<>();
+        obstacles.add(new Obstacles(2,60,4,terminal));
+        obstacles.add(new Obstacles(2,60,2,terminal));
+        obstacles.add(new Obstacles(3,60,8,terminal));
 
 
         terminal.flush();
@@ -85,8 +92,21 @@ public class Main {
         boolean continueReadingInput = true;
         while (continueReadingInput) {
             KeyStroke keyStroke = null;
+            int index = 0;
+
+
 
             do {
+                index++;
+                if (index % 100==0) {
+                    continueReadingInput = handleObstacles(obstacles, player, terminal);
+                    if (!continueReadingInput) {
+                        terminal.close();
+                        break;
+                    }
+                }
+
+
                 Thread.sleep(5);
                 keyStroke = terminal.pollInput();
             }
@@ -119,25 +139,44 @@ public class Main {
             terminal.putCharacter(' ');
             terminal.setCursorPosition(player.x, player.y);
             terminal.putCharacter(playerCharacter);
-
+/*
             o.collisionObstacles(player.x,player.y);
             o2.collisionObstacles(player.x,player.y);
             o3.collisionObstacles(player.x,player.y);
 
+ */
 
-            /* Is the player alive? obstacles for lvl 1
-            for (Position ob : obstacles) {
-                if (ob.x == player.x && ob.y == player.y) {
-                    continueReadingInput = false;
-                    terminal.bell();
-                    System.out.println("GAME OVER!");
-                }
-            }
 
-             */
+
 
             terminal.flush();
         }
     }
+
+    private static boolean handleObstacles (List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {
+        for (Obstacles obstacle: obstacles) {
+            terminal.setCursorPosition(obstacle.posX, obstacle.posY);
+            terminal.putCharacter(' ');
+
+            if (obstacle.posX > 0) {
+                obstacle.posX--;
+            }
+
+            terminal.setCursorPosition(obstacle.posX, obstacle.posY);
+            terminal.putCharacter('\u2588');
+
+        }
+
+        terminal.flush();
+        for (Obstacles obs: obstacles) {
+            if (obs.posX == player.x && obs.posY == player.y) {;
+                terminal.bell();
+                System.out.println("GAME OVER!");
+                return false;
+            }
+        }
+        return true;
+    }
+
 
 }
