@@ -6,6 +6,8 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 /*
         RUSH
         Lvl 1
@@ -97,7 +99,7 @@ public class Main {
 
 
             do {
-                index++;
+                index+=5;
                 if (index % 100==0) {
                     continueReadingInput = handleObstacles(obstacles, player, terminal);
                     if (!continueReadingInput) {
@@ -154,12 +156,16 @@ public class Main {
     }
 
     private static boolean handleObstacles (List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {
+        Random r = new Random();
         for (Obstacles obstacle: obstacles) {
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
             terminal.putCharacter(' ');
 
             if (obstacle.posX > 0) {
                 obstacle.posX--;
+                if (obstacle.posX == 1) {
+                    obstacle.posX = 60;
+                }
             }
 
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
