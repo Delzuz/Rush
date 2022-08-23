@@ -53,7 +53,7 @@ public class Main {
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
 
-        // Create obstacles array
+        /* Create obstacles array
         Position[] obstacles = new Position[10];
         for(int i = 0;i<10;i++){
             obstacles[i] = new Position(10+i, 10);
@@ -64,6 +64,18 @@ public class Main {
             terminal.setCursorPosition(p.x, p.y);
             terminal.putCharacter(block);
         }
+
+
+
+         */
+        Obstacles o = new Obstacles(10,10,10,terminal);
+        o.createObstacles();
+        Obstacles o2 = new Obstacles(5,5,5,terminal);
+        o2.createObstacles();
+        Obstacles o3 = new Obstacles(8,8,8,terminal);
+        o3.createObstacles();
+
+
 
         terminal.flush();
 
@@ -107,7 +119,7 @@ public class Main {
 
 
 
-            // Is the player alive? obstacles for lvl 1
+            /* Is the player alive? obstacles for lvl 1
             for (Position ob : obstacles) {
                 if (ob.x == player.x && ob.y == player.y) {
                     continueReadingInput = false;
@@ -115,6 +127,8 @@ public class Main {
                     System.out.println("GAME OVER!");
                 }
             }
+
+             */
 
             terminal.flush();
         }
