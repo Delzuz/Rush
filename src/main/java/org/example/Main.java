@@ -22,10 +22,10 @@ public class Main {
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
 
-       // printNewObstacles
+
         // Create obstacles array
-        Position[] obstacles = new Position[10];
-        for(int i = 0;i<10;i++){
+        Position[] obstacles = new Position[20];
+        for(int i = 0;i<20;i++){
             obstacles[i] = new Position(10+i, 10);
         }
 
