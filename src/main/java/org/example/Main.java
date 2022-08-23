@@ -1,4 +1,5 @@
 package org.example;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -7,8 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 public class Main {
     public static void main(String[] args) throws Exception {
+        TerminalSize ts = new TerminalSize(60,15);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
+        terminalFactory.setInitialTerminalSize(ts);
         Terminal terminal = terminalFactory.createTerminal();
+
         terminal.setCursorVisible(false);
 
         char playerCharacter = '\u263a';
