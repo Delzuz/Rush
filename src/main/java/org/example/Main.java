@@ -1,4 +1,5 @@
 package org.example;
+import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -38,8 +39,11 @@ RUSH
         Spel meny med 2 val - starta eller exit*/
 public class Main {
     public static void main(String[] args) throws Exception {
+        TerminalSize ts = new TerminalSize(60,15);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
+        terminalFactory.setInitialTerminalSize(ts);
         Terminal terminal = terminalFactory.createTerminal();
+
         terminal.setCursorVisible(false);
 
 
