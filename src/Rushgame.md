@@ -30,5 +30,10 @@ RUSH
         Spel meny med 2 val - starta eller exit
 
 
-Buggar som kan fixas när vi har tid
-- system exit när man dör 
+Bugg lista
+-Fixa system exit när man dör så man kan
+-skriva ut game over
+-förhindra inhållning av tagentknapp
+
+*Svårigheter
+Obstacles att röra sig mot en
