@@ -15,7 +15,7 @@ public class Bombs {
         this.terminal = terminal;
     }
 
-    public void createBombs(int bombs, Position player) throws IOException, InterruptedException {
+    public void createBombs(Position player) throws IOException, InterruptedException {
 
             Random r1 = new Random();
             x = r1.nextInt(15);

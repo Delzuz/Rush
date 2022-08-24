@@ -28,30 +28,10 @@ public class Main {
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
 
-        Position[] wallR = new Position[60];
-        for(int i = 0;i<60;i++){
-            wallR[i] = new Position(60, 0);
-        }
-        // wall array to print
-        for (Position p : wallR) {
-            for (int column = 0; column < 60; column++) {
-                terminal.setCursorPosition(column, 0);
-                terminal.putCharacter(wall);
-            }
-            for (int column = 60; column > 0; column--) {
-                terminal.setCursorPosition(column, 60);
-                terminal.putCharacter(wall);
 
-            }
-            for (int row = 0; row < 15; row++) {
-                terminal.setCursorPosition(0, row);
-                terminal.putCharacter(wall);
-            }
-            for (int row = 15; row > 0; row--) {
-                terminal.setCursorPosition(60, row);
-                terminal.putCharacter(wall);
-            }
-        }
+
+
+
 
         List<Obstacles> obstacles1 = new ArrayList<>();
         obstacles1.add(new Obstacles(5,60,4,terminal));
@@ -92,6 +72,30 @@ public class Main {
                     }
                 }
 
+                Position[] wallR = new Position[60];
+                for(int i = 0;i<60;i++){
+                    wallR[i] = new Position(60, 0);
+                }
+                // wall array to print
+                for (Position p : wallR) {
+                    for (int column = 0; column < 60; column++) {
+                        terminal.setCursorPosition(column, 0);
+                        terminal.putCharacter(wall);
+                    }
+                    for (int column = 60; column > 0; column--) {
+                        terminal.setCursorPosition(column, 60);
+                        terminal.putCharacter(wall);
+
+                    }
+                    for (int row = 0; row < 15; row++) {
+                        terminal.setCursorPosition(0, row);
+                        terminal.putCharacter(wall);
+                    }
+                    for (int row = 15; row > 0; row--) {
+                        terminal.setCursorPosition(60, row);
+                        terminal.putCharacter(wall);
+                    }
+                }
 
                 Thread.sleep(5);
                 keyStroke = terminal.pollInput();
@@ -123,7 +127,7 @@ public class Main {
             terminal.setCursorPosition(player.x, player.y);
             terminal.putCharacter(playerCharacter);
             Bombs bomb1 = new Bombs(10,10,terminal);
-            bomb1.createBombs(3,player);
+            bomb1.createBombs(player);
 
 
             //Exit button
