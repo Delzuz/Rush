@@ -53,9 +53,15 @@ public class Main {
         while (continueReadingInput) {
             KeyStroke keyStroke = null;
             int index = 0;
+            int bombIndex = 0;
 
             do {
                 index+=5;
+                bombIndex++;
+                if (bombIndex % 100 == 0) {
+                    Bombs bomb1 = new Bombs(10,10,terminal);
+                    bomb1.createBombs(player);
+                }
                 //First set of moving obstacles
                 if (index % 100==0) {
                     continueReadingInput = handleObstacles1(obstacles1, player, terminal);
@@ -130,8 +136,7 @@ public class Main {
             terminal.putCharacter(' ');
             terminal.setCursorPosition(player.x, player.y);
             terminal.putCharacter(playerCharacter);
-            Bombs bomb1 = new Bombs(10,10,terminal);
-            bomb1.createBombs(player);
+
 
 
             //Exit button
