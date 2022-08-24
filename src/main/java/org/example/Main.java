@@ -1,5 +1,6 @@
 package org.example;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -20,18 +21,11 @@ public class Main {
         Terminal terminal = terminalFactory.createTerminal();
 
         terminal.setCursorVisible(false);
-        final char wall = '\u2588';
 
-
-        char playerCharacter = '\u263a';
+        char playerCharacter = '\u2603';
         Position player = new Position(13,13);
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
-
-
-
-
-
 
         List<Obstacles> obstacles1 = new ArrayList<>();
         obstacles1.add(new Obstacles(5,60,4,terminal));
@@ -43,10 +37,7 @@ public class Main {
         obstacles2.add(new Obstacles(3,75,2,terminal));
         obstacles2.add(new Obstacles(3,75,8,terminal));
 
-
-
         terminal.flush();
-
 
         boolean continueReadingInput = true;
         while (continueReadingInput) {
@@ -56,6 +47,8 @@ public class Main {
 
             do {
                 index+=5;
+
+                // Bomb
                 bombIndex++;
                 if (bombIndex % 100 == 0) {
                     Bombs bomb1 = new Bombs(10,10,terminal);
@@ -77,37 +70,13 @@ public class Main {
                         break;
                     }
                 }
-
-                Position[] wallR = new Position[60];
-                for(int i = 0;i<60;i++){
-                    wallR[i] = new Position(60, 0);
-                }
-                // wall array to print
-                for (Position p : wallR) {
-                    for (int column = 0; column < 60; column++) {
-                        terminal.setCursorPosition(column, 0);
-                        terminal.putCharacter(wall);
-                    }
-                    for (int column = 60; column > 0; column--) {
-                        terminal.setCursorPosition(column, 60);
-                        terminal.putCharacter(wall);
-
-                    }
-                    for (int row = 0; row < 15; row++) {
-                        terminal.setCursorPosition(0, row);
-                        terminal.putCharacter(wall);
-                    }
-                    for (int row = 15; row > 0; row--) {
-                        terminal.setCursorPosition(60, row);
-                        terminal.putCharacter(wall);
-                    }
-                }
+                // put wall method here
+                continueReadingInput = printWalls(player,terminal);
 
                 Thread.sleep(5);
                 keyStroke = terminal.pollInput();
             }
             while (keyStroke == null);
-
 
 
             Position oldPosition = new Position(player.x, player.y);
@@ -141,12 +110,81 @@ public class Main {
                 System.out.println("Quit");
                 terminal.close();
             }
-
-
+            if(player.x == 0)
+            {
+                continueReadingInput = false;
+                System.out.println("Quit");
+                terminal.close();
+            }
+            if(player.y == 0)
+            {
+                continueReadingInput = false;
+                System.out.println("Quit");
+                terminal.close();
+            }
+            if(player.y == 14)
+            {
+                continueReadingInput = false;
+                System.out.println("Quit");
+                terminal.close();
+            }
+            if(player.x == 60)
+            {
+                continueReadingInput = false;
+                System.out.println("Quit");
+                terminal.close();
+            }
         }
 
-    }
+        /*terminal.clearScreen();
+        String stringToText = "LEVEL 2";
+        for (int i = 0; i < stringToText.length(); i++) {
+            terminal.setCursorPosition(i, 3);
+            terminal.putCharacter(stringToText.charAt(i));
 
+        }
+        terminal.flush();*/
+
+    }
+    private static boolean printWalls(Position player,Terminal terminal)throws Exception
+    {
+        final char wall = '\u2588';
+        Position[] wallR = new Position[60];
+        for(int i = 0;i<60;i++){
+            wallR[i] = new Position(60, 0);
+        }
+        // wall array to print
+        for (Position p : wallR) {
+            for (int column = 0; column < 60; column++) {
+                terminal.setCursorPosition(column, 0);
+                terminal.putCharacter(wall);
+            }
+            for (int column = 60; column > 0; column--) {
+                terminal.setCursorPosition(column, 60);
+                terminal.putCharacter(wall);
+
+            }
+            for (int row = 0; row < 15; row++) {
+                terminal.setCursorPosition(0, row);
+                terminal.putCharacter(wall);
+            }
+            for (int row = 15; row > 0; row--) {
+                terminal.setCursorPosition(60, row);
+                terminal.putCharacter(wall);
+            }
+                }
+        for (Position walls: wallR) {
+            if (walls.x == player.x && walls.y == player.y) {
+                terminal.bell();
+                System.out.println("GAME OVER!");
+                return false;
+            }
+        }
+
+        terminal.flush();
+
+        return true;
+    }
     private static boolean handleObstacles1 (List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {
         for (Obstacles obstacle: obstacles) {
             Random r = new Random();
@@ -168,7 +206,7 @@ public class Main {
             }
 
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
-            terminal.putCharacter('\u2588');
+            terminal.putCharacter('\u26dd');
 
         }
 
@@ -202,7 +240,7 @@ public class Main {
             }
 
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
-            terminal.putCharacter('\u2588');
+            terminal.putCharacter('\u26dd');
 
         }
 
@@ -210,6 +248,7 @@ public class Main {
         for (Obstacles obs: obstacles) {
             if (obs.posX == player.x && obs.posY == player.y) {
                 terminal.bell();
+                //terminal.setForegroundColor(TextColor.ANSI.RED);
                 System.out.println("GAME OVER!");
                 return false;
             }

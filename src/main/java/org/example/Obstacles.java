@@ -39,7 +39,7 @@ public class Obstacles {
 
         for (Position p : obstacles) {
             terminal.setCursorPosition(p.x, p.y);
-            terminal.putCharacter('\u2588');
+            terminal.putCharacter('\u26dd');
 
         }
     }
