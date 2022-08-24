@@ -48,8 +48,6 @@ public class Main {
             KeyStroke keyStroke = null;
             int index = 0;
 
-
-
             do {
                 index+=5;
                 //First set of moving obstacles
@@ -68,12 +66,14 @@ public class Main {
                         break;
                     }
                 }
-                handleMonsters(player,terminal);
+
 
                 Thread.sleep(5);
                 keyStroke = terminal.pollInput();
             }
             while (keyStroke == null);
+
+
 
             Position oldPosition = new Position(player.x, player.y);
 
@@ -97,6 +97,10 @@ public class Main {
             terminal.putCharacter(' ');
             terminal.setCursorPosition(player.x, player.y);
             terminal.putCharacter(playerCharacter);
+            Bombs bomb1 = new Bombs(10,10,terminal);
+            bomb1.createBombs(3,player);
+
+
             //Exit button
             if (keyStroke.getKeyType() == Escape) {
                 continueReadingInput = false;
@@ -106,6 +110,7 @@ public class Main {
 
 
         }
+
     }
 
     private static boolean handleObstacles1 (List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {

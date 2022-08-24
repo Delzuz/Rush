@@ -15,27 +15,29 @@ public class Bombs {
         this.terminal = terminal;
     }
 
-    public void createBombs() throws IOException, InterruptedException {
-         Random r1 = new Random();
-         this.x = r1.nextInt(15);
-         this.y = r1.nextInt(15);
+    public void createBombs(int bombs, Position player) throws IOException, InterruptedException {
+        for (int j = 0; j < bombs; j++) {
+            Random r1 = new Random();
+            x = r1.nextInt(15);
+            y = r1.nextInt(15);
 
-        final char bomb = 'O';
-        terminal.setCursorPosition(x, y);
-        terminal.putCharacter(bomb);
+            final char bomb = 'O';
+            terminal.setCursorPosition(x, y);
+            terminal.putCharacter(bomb);
 
-        if (Position.x == x && Position.y == y) {
-            terminal.clearScreen();
-            String stringToText = "You hit a bomb sucker!";
-            for (int i = 0; i < stringToText.length(); i++) {
-                terminal.setCursorPosition(5, 3);
-                terminal.putCharacter(stringToText.charAt(i));
+            if (player.x == x && player.y == y) {
+                terminal.clearScreen();
+                String stringToText = "You hit a bomb sucker!";
+                for (int i = 0; i < stringToText.length(); i++) {
+                    terminal.setCursorPosition(i, 3);
+                    terminal.putCharacter(stringToText.charAt(i));
 
+                }
+                terminal.flush();
+                Thread.sleep(4000);
+                terminal.close();
             }
             terminal.flush();
-            Thread.sleep(4000);
-            terminal.close();
         }
-        terminal.flush();
     }
 }
