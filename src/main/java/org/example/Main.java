@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static com.googlecode.lanterna.input.KeyType.Escape;
+
 /*
         RUSH
         Lvl 1
@@ -105,11 +107,13 @@ public class Main {
                 keyStroke = terminal.pollInput();
             }
             while (keyStroke == null);
-
+            /*
             Character c = keyStroke.getCharacter(); // used Character instead of char because it might be null
             if (c == Character.valueOf('q')) { continueReadingInput = false;
                 System.out.println("quit");
             }
+
+             */
 
             Position oldPosition = new Position(player.x, player.y);
 
@@ -133,6 +137,12 @@ public class Main {
             terminal.putCharacter(' ');
             terminal.setCursorPosition(player.x, player.y);
             terminal.putCharacter(playerCharacter);
+            //Exit button
+            if (keyStroke.getKeyType() == Escape) {
+                continueReadingInput = false;
+                System.out.println("Quit");
+                terminal.close();
+            }
 
 
         }
