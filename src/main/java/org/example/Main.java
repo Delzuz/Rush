@@ -52,13 +52,11 @@ public class Main {
 
         terminal.setCursorVisible(false);
 
-
         final char block = '\u2588';
         char playerCharacter = '\u263a';
         Position player = new Position(13,13);
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
-
 
         /*
         o = new Obstacles(2,40,4,terminal);
@@ -77,13 +75,10 @@ public class Main {
 
         terminal.flush();
 
-
         boolean continueReadingInput = true;
         while (continueReadingInput) {
             KeyStroke keyStroke = null;
             int index = 0;
-
-
 
             do {
                 index+=5;
@@ -134,10 +129,6 @@ public class Main {
             o3.collisionObstacles(player.x,player.y);
 
  */
-
-
-
-
             terminal.flush();
         }
     }

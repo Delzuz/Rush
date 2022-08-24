@@ -1,22 +1,22 @@
 RUSH
-Lvl 1
-* Hinder kommer och går mot en.
+         Lvl 1
+        * 3 Hinder kommer i 3 st intervaller
 
         Står lvl 2
-        * Hinder
+        *  4Hinder i 4 intervaller 
         * + 1 Monster jagar
 
         * Lvl 3
-        * Hinder ( längre + snabbare)
+        * Hinder (5 hinder, 5 intervaller - snabbare?)
         * 1 monster jagar
 
         Lvl 4
-        * Hinder ( längre + bredare+ snabbare)
-        * 2 monster jaguar
+        * Hinder (6 hinder intervall - samma hastighet)
+        * 2 monster jagar 
         * 5 bomber kommer långsamt
 
         Lvl 5
-        * samma Hinder som lvl 3
+        * samma Hinder som lvl 4
         * 3 monster jagar
         * 10 bomber lite snabbare
 
