@@ -70,10 +70,15 @@ public class Main {
         o3.createObstacles();
 
          */
-        List<Obstacles> obstacles = new ArrayList<>();
-        obstacles.add(new Obstacles(2,60,4,terminal));
-        obstacles.add(new Obstacles(2,60,2,terminal));
-        obstacles.add(new Obstacles(3,60,8,terminal));
+        List<Obstacles> obstacles1 = new ArrayList<>();
+        obstacles1.add(new Obstacles(3,60,4,terminal));
+        obstacles1.add(new Obstacles(3,60,2,terminal));
+        obstacles1.add(new Obstacles(3,60,8,terminal));
+
+        List<Obstacles> obstacles2 = new ArrayList<>();
+        obstacles2.add(new Obstacles(3,75,4,terminal));
+        obstacles2.add(new Obstacles(3,75,2,terminal));
+        obstacles2.add(new Obstacles(3,75,8,terminal));
 
 
 
@@ -90,7 +95,15 @@ public class Main {
             do {
                 index+=5;
                 if (index % 100==0) {
-                    continueReadingInput = handleObstacles(obstacles, player, terminal);
+                    continueReadingInput = handleObstacles1(obstacles1, player, terminal);
+                    if (!continueReadingInput) {
+                        terminal.close();
+                        break;
+                    }
+                }
+
+                if (index % 100==0) {
+                    continueReadingInput = handleObstacles2(obstacles2, player, terminal);
                     if (!continueReadingInput) {
                         terminal.close();
                         break;
@@ -144,7 +157,7 @@ public class Main {
         }
     }
 
-    private static boolean handleObstacles (List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {
+    private static boolean handleObstacles1 (List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {
         for (Obstacles obstacle: obstacles) {
             Random r = new Random();
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
@@ -158,6 +171,40 @@ public class Main {
                     obstacles.get(1).setPosY(r.nextInt(15));
                     obstacles.get(2).setPosY(r.nextInt(15));
 
+                    terminal.clearScreen();
+
+
+                }
+            }
+
+            terminal.setCursorPosition(obstacle.posX, obstacle.posY);
+            terminal.putCharacter('\u2588');
+
+        }
+
+        terminal.flush();
+        for (Obstacles obs: obstacles) {
+            if (obs.posX == player.x && obs.posY == player.y) {
+                terminal.bell();
+                System.out.println("GAME OVER!");
+                return false;
+            }
+        }
+        return true;
+    }
+    private static boolean handleObstacles2 (List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {
+        for (Obstacles obstacle: obstacles) {
+            Random r = new Random();
+            terminal.setCursorPosition(obstacle.posX, obstacle.posY);
+            terminal.putCharacter(' ');
+
+            if (obstacle.posX > 0) {
+                obstacle.posX--;
+                if (obstacle.posX == 0) {
+                    obstacle.posX = 60;
+                    obstacles.get(0).setPosY(r.nextInt(15));
+                    obstacles.get(1).setPosY(r.nextInt(15));
+                    obstacles.get(2).setPosY(r.nextInt(15));
                     terminal.clearScreen();
 
 
