@@ -60,16 +60,6 @@ public class Main {
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
 
-
-        /*
-        o = new Obstacles(2,40,4,terminal);
-        o.createObstacles();
-        o2 = new Obstacles(2,40,2,terminal);
-        o2.createObstacles();
-        o3 = new Obstacles(3,40,8,terminal);
-        o3.createObstacles();
-
-         */
         List<Obstacles> obstacles1 = new ArrayList<>();
         obstacles1.add(new Obstacles(3,60,4,terminal));
         obstacles1.add(new Obstacles(3,60,2,terminal));
@@ -143,13 +133,6 @@ public class Main {
             terminal.putCharacter(' ');
             terminal.setCursorPosition(player.x, player.y);
             terminal.putCharacter(playerCharacter);
-            /*
-            o.collisionObstacles(player.x,player.y);
-            o2.collisionObstacles(player.x,player.y);
-            o3.collisionObstacles(player.x,player.y);
-
-            */
-
 
 
         }
