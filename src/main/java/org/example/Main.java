@@ -152,8 +152,6 @@ public class Main {
 
 
 
-
-            terminal.flush();
         }
     }
 
