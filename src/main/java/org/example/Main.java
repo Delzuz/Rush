@@ -20,13 +20,38 @@ public class Main {
         Terminal terminal = terminalFactory.createTerminal();
 
         terminal.setCursorVisible(false);
-
+        final char wall = '\u2588';
 
 
         char playerCharacter = '\u263a';
         Position player = new Position(13,13);
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
+
+        Position[] wallR = new Position[60];
+        for(int i = 0;i<60;i++){
+            wallR[i] = new Position(60, 0);
+        }
+        // wall array to print
+        for (Position p : wallR) {
+            for (int column = 0; column < 60; column++) {
+                terminal.setCursorPosition(column, 0);
+                terminal.putCharacter(wall);
+            }
+            for (int column = 60; column > 0; column--) {
+                terminal.setCursorPosition(column, 60);
+                terminal.putCharacter(wall);
+
+            }
+            for (int row = 0; row < 15; row++) {
+                terminal.setCursorPosition(0, row);
+                terminal.putCharacter(wall);
+            }
+            for (int row = 15; row > 0; row--) {
+                terminal.setCursorPosition(60, row);
+                terminal.putCharacter(wall);
+            }
+        }
 
         List<Obstacles> obstacles1 = new ArrayList<>();
         obstacles1.add(new Obstacles(5,60,4,terminal));
