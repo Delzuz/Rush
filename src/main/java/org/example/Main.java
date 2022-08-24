@@ -44,9 +44,6 @@ import static com.googlecode.lanterna.input.KeyType.Escape;
         Spel meny med 2 val - starta eller exit*/
 public class Main {
 
-    static Obstacles o;
-    static Obstacles o2;
-    static Obstacles o3;
     public static void main(String[] args) throws Exception {
         TerminalSize ts = new TerminalSize(60,15);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
@@ -56,16 +53,16 @@ public class Main {
         terminal.setCursorVisible(false);
 
 
-        final char block = '\u2588';
+
         char playerCharacter = '\u263a';
         Position player = new Position(13,13);
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
 
         List<Obstacles> obstacles1 = new ArrayList<>();
-        obstacles1.add(new Obstacles(3,60,4,terminal));
-        obstacles1.add(new Obstacles(3,60,2,terminal));
-        obstacles1.add(new Obstacles(3,60,8,terminal));
+        obstacles1.add(new Obstacles(5,60,4,terminal));
+        obstacles1.add(new Obstacles(5,60,2,terminal));
+        obstacles1.add(new Obstacles(5,60,8,terminal));
 
         List<Obstacles> obstacles2 = new ArrayList<>();
         obstacles2.add(new Obstacles(3,75,4,terminal));
@@ -107,13 +104,6 @@ public class Main {
                 keyStroke = terminal.pollInput();
             }
             while (keyStroke == null);
-            /*
-            Character c = keyStroke.getCharacter(); // used Character instead of char because it might be null
-            if (c == Character.valueOf('q')) { continueReadingInput = false;
-                System.out.println("quit");
-            }
-
-             */
 
             Position oldPosition = new Position(player.x, player.y);
 
