@@ -16,7 +16,7 @@ public class Bombs {
     }
 
     public void createBombs(int bombs, Position player) throws IOException, InterruptedException {
-        for (int j = 0; j < bombs; j++) {
+
             Random r1 = new Random();
             x = r1.nextInt(15);
             y = r1.nextInt(15);
@@ -38,6 +38,6 @@ public class Bombs {
                 terminal.close();
             }
             terminal.flush();
-        }
+
     }
 }
