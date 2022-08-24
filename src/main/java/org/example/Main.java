@@ -148,7 +148,10 @@ public class Main {
     }
     private static boolean printWalls(Position player,Terminal terminal)throws Exception
     {
-        final char wall = '\u2588';
+        final char wallL = '\u2344';
+        final char wallRight = '\u2343';
+        final char wallT = '\u234c';
+        final char wallB = '\u2353';
         Position[] wallR = new Position[60];
         for(int i = 0;i<60;i++){
             wallR[i] = new Position(60, 0);
@@ -157,20 +160,20 @@ public class Main {
         for (Position p : wallR) {
             for (int column = 0; column < 60; column++) {
                 terminal.setCursorPosition(column, 0);
-                terminal.putCharacter(wall);
+                terminal.putCharacter(wallT);
             }
             for (int column = 60; column > 0; column--) {
                 terminal.setCursorPosition(column, 60);
-                terminal.putCharacter(wall);
+                terminal.putCharacter(wallB);
 
             }
             for (int row = 0; row < 15; row++) {
                 terminal.setCursorPosition(0, row);
-                terminal.putCharacter(wall);
+                terminal.putCharacter(wallL);
             }
             for (int row = 15; row > 0; row--) {
                 terminal.setCursorPosition(60, row);
-                terminal.putCharacter(wall);
+                terminal.putCharacter(wallRight);
             }
                 }
         for (Position walls: wallR) {

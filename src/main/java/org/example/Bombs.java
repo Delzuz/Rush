@@ -21,9 +21,9 @@ public class Bombs {
             x = r1.nextInt(15);
             y = r1.nextInt(15);
 
-            final char bomb = 'O';
+            //final char bomb = 'O';
             terminal.setCursorPosition(x, y);
-            terminal.putCharacter(bomb);
+            terminal.putCharacter('\u2622');;
 
             if (player.x == x && player.y == y) {
                 terminal.clearScreen();
