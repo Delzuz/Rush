@@ -9,42 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/*
-        RUSH
-        Lvl 1
-        * Hinder kommer och går mot en
+import static com.googlecode.lanterna.input.KeyType.Escape;
 
-        Står lvl 2
-        * Hinder
-        * + 1 Monster jagar
-
-        * Lvl 3
-        * Hinder (längre + snabbare)
-        * 1 monster jagar
-
-        Lvl 4
-        * Hinder (längre + bredare+ snabbare)
-        * 2 monster jaguar
-        * 5 bomber kommer långsamt
-
-        Lvl 5
-        * samma Hinder som lvl 3
-        * 3 monster jagar
-        * 10 bomber lite snabbare
-
-        Extra finesser
-        Dör av att röra taket och botten
-        Hinder en färg (olika färg för lvl?)
-        Bomber en färg
-        Monster en färg eller symbol
-        Spelare blir röd av död
-        Game Over när man dör
-        Spel meny med 2 val - starta eller exit*/
 public class Main {
 
-    static Obstacles o;
-    static Obstacles o2;
-    static Obstacles o3;
     public static void main(String[] args) throws Exception {
         TerminalSize ts = new TerminalSize(60,15);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
@@ -54,26 +22,16 @@ public class Main {
         terminal.setCursorVisible(false);
 
 
-        final char block = '\u2588';
+
         char playerCharacter = '\u263a';
         Position player = new Position(13,13);
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
 
-
-        /*
-        o = new Obstacles(2,40,4,terminal);
-        o.createObstacles();
-        o2 = new Obstacles(2,40,2,terminal);
-        o2.createObstacles();
-        o3 = new Obstacles(3,40,8,terminal);
-        o3.createObstacles();
-
-         */
         List<Obstacles> obstacles1 = new ArrayList<>();
-        obstacles1.add(new Obstacles(3,60,4,terminal));
-        obstacles1.add(new Obstacles(3,60,2,terminal));
-        obstacles1.add(new Obstacles(3,60,8,terminal));
+        obstacles1.add(new Obstacles(5,60,4,terminal));
+        obstacles1.add(new Obstacles(5,60,2,terminal));
+        obstacles1.add(new Obstacles(5,60,8,terminal));
 
         List<Obstacles> obstacles2 = new ArrayList<>();
         obstacles2.add(new Obstacles(3,75,4,terminal));
@@ -94,6 +52,7 @@ public class Main {
 
             do {
                 index+=5;
+                //First set of moving obstacles
                 if (index % 100==0) {
                     continueReadingInput = handleObstacles1(obstacles1, player, terminal);
                     if (!continueReadingInput) {
@@ -101,7 +60,7 @@ public class Main {
                         break;
                     }
                 }
-
+                //Second set of moving obstacles
                 if (index % 100==0) {
                     continueReadingInput = handleObstacles2(obstacles2, player, terminal);
                     if (!continueReadingInput) {
@@ -115,11 +74,6 @@ public class Main {
                 keyStroke = terminal.pollInput();
             }
             while (keyStroke == null);
-
-            Character c = keyStroke.getCharacter(); // used Character instead of char because it might be null
-            if (c == Character.valueOf('q')) { continueReadingInput = false;
-                System.out.println("quit");
-            }
 
             Position oldPosition = new Position(player.x, player.y);
 
@@ -143,17 +97,14 @@ public class Main {
             terminal.putCharacter(' ');
             terminal.setCursorPosition(player.x, player.y);
             terminal.putCharacter(playerCharacter);
-            /*
-            o.collisionObstacles(player.x,player.y);
-            o2.collisionObstacles(player.x,player.y);
-            o3.collisionObstacles(player.x,player.y);
-
-            */
-
-
+            //Exit button
+            if (keyStroke.getKeyType() == Escape) {
+                continueReadingInput = false;
+                System.out.println("Quit");
+                terminal.close();
+            }
 
 
-            terminal.flush();
         }
     }
 
