@@ -1,5 +1,6 @@
 package org.example;
 import com.googlecode.lanterna.TerminalSize;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -102,7 +103,10 @@ public class Main {
             }
             while (keyStroke == null);
 
-
+                if (wall == player.x)
+                {
+                    continueReadingInput = false;
+                }
 
             Position oldPosition = new Position(player.x, player.y);
 
@@ -139,6 +143,15 @@ public class Main {
 
 
         }
+
+        /*terminal.clearScreen();
+        String stringToText = "LEVEL 2";
+        for (int i = 0; i < stringToText.length(); i++) {
+            terminal.setCursorPosition(i, 3);
+            terminal.putCharacter(stringToText.charAt(i));
+
+        }
+        terminal.flush();*/
 
     }
 
@@ -205,6 +218,7 @@ public class Main {
         for (Obstacles obs: obstacles) {
             if (obs.posX == player.x && obs.posY == player.y) {
                 terminal.bell();
+                //terminal.setForegroundColor(TextColor.ANSI.RED);
                 System.out.println("GAME OVER!");
                 return false;
             }
