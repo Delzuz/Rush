@@ -22,7 +22,7 @@ public class Main {
 
         terminal.setCursorVisible(false);
 
-        char playerCharacter = '\u263a';
+        char playerCharacter = '\u2603';
         Position player = new Position(13,13);
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
