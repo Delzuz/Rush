@@ -57,6 +57,8 @@ public class Main {
 
             do {
                 index+=5;
+
+                // Bomb
                 bombIndex++;
                 if (bombIndex % 100 == 0) {
                     Bombs bomb1 = new Bombs(10,10,terminal);
