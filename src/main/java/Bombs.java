@@ -12,7 +12,7 @@ public class Bombs {
     }
 
     public void createBombs(int Bombs, int x, int y) throws IOException {
-        Random r1 = new Random;
+         Random r1 = new Random();
          x = r1.nextInt(15);
          y = r1.nextInt(15);
 
@@ -20,5 +20,6 @@ public class Bombs {
         Terminal terminal = null;
         terminal.setCursorPosition(x, y);
         terminal.putCharacter(bomb);
+        terminal.flush();
     }
 }
