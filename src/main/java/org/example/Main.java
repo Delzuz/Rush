@@ -4,6 +4,7 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -18,11 +19,11 @@ import java.util.Random;
         * + 1 Monster jagar
 
         * Lvl 3
-        * Hinder ( längre + snabbare)
+        * Hinder (längre + snabbare)
         * 1 monster jagar
 
         Lvl 4
-        * Hinder ( längre + bredare+ snabbare)
+        * Hinder (längre + bredare+ snabbare)
         * 2 monster jaguar
         * 5 bomber kommer långsamt
 
@@ -52,11 +53,13 @@ public class Main {
 
         terminal.setCursorVisible(false);
 
+
         final char block = '\u2588';
         char playerCharacter = '\u263a';
         Position player = new Position(13,13);
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
+
 
         /*
         o = new Obstacles(2,40,4,terminal);
@@ -73,12 +76,16 @@ public class Main {
         obstacles.add(new Obstacles(3,60,8,terminal));
 
 
+
         terminal.flush();
+
 
         boolean continueReadingInput = true;
         while (continueReadingInput) {
             KeyStroke keyStroke = null;
             int index = 0;
+
+
 
             do {
                 index+=5;
@@ -123,25 +130,37 @@ public class Main {
             terminal.putCharacter(' ');
             terminal.setCursorPosition(player.x, player.y);
             terminal.putCharacter(playerCharacter);
-/*
+            /*
             o.collisionObstacles(player.x,player.y);
             o2.collisionObstacles(player.x,player.y);
             o3.collisionObstacles(player.x,player.y);
 
- */
+            */
+
+
+
+
             terminal.flush();
         }
     }
 
     private static boolean handleObstacles (List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {
         for (Obstacles obstacle: obstacles) {
+            Random r = new Random();
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
             terminal.putCharacter(' ');
 
             if (obstacle.posX > 0) {
                 obstacle.posX--;
-                if (obstacle.posX == 1) {
+                if (obstacle.posX == 0) {
                     obstacle.posX = 60;
+                    obstacles.get(0).setPosY(r.nextInt(15));
+                    obstacles.get(1).setPosY(r.nextInt(15));
+                    obstacles.get(2).setPosY(r.nextInt(15));
+
+                    terminal.clearScreen();
+
+
                 }
             }
 
