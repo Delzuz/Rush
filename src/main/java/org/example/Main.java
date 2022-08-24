@@ -206,7 +206,7 @@ public class Main {
             }
 
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
-            terminal.putCharacter('\u2588');
+            terminal.putCharacter('\u26dd');
 
         }
 
@@ -240,7 +240,7 @@ public class Main {
             }
 
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
-            terminal.putCharacter('\u2588');
+            terminal.putCharacter('\u26dd');
 
         }
 
