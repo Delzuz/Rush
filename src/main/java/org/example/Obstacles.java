@@ -8,22 +8,19 @@ public class Obstacles {
 
 
     private int size;
-    private int posX;
-    private int posY;
+    public int posX;
+    public int posY;
     private Terminal terminal;
     Position[] obstacles;
     boolean continueReadingInput;
 
-    /*
-    public Obstacles(int size, int posX, int posY, Terminal terminal, boolean continueReadingInput) {
-        this.size = size;
-        this.posX = posX;
+    public void setPosY(int posY) {
         this.posY = posY;
-        this.terminal = terminal;
-        this.continueReadingInput = continueReadingInput;
     }
 
-     */
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
 
     public Obstacles(int size, int posX, int posY, Terminal terminal) {
         this.size = size;
@@ -33,10 +30,11 @@ public class Obstacles {
     }
 
 
-    public void createObstacles () throws IOException {
+    public void createObstacles () throws IOException, InterruptedException {
         obstacles = new Position[size];
         for (int i = 0; i < size; i++) {
             obstacles[i] = new Position(posX, posY + i);
+
         }
 
         for (Position p : obstacles) {
@@ -56,17 +54,5 @@ public class Obstacles {
         }
 
     }
-    /*
-    public void moveObstacle (int size, int y) throws IOException {
-        for (int i = 60; i > 0; i--) {
-
-        }
-    }
-    
-     */
-
-
-
-
 
 }
