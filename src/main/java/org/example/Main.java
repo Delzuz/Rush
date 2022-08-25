@@ -5,6 +5,7 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ public class Main {
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
         terminalFactory.setInitialTerminalSize(ts);
         Terminal terminal = terminalFactory.createTerminal();
+        
 
         terminal.setCursorVisible(false);
 
@@ -49,7 +51,7 @@ public class Main {
                 index+=5;
 
                 // Bomb
-                bombIndex++;
+                bombIndex+=5;
                 if (bombIndex % 100 == 0) {
                     Bombs bomb1 = new Bombs(10,10,terminal);
                     bomb1.createBombs(player);
@@ -201,7 +203,6 @@ public class Main {
                     obstacles.get(0).setPosY(r.nextInt(15));
                     obstacles.get(1).setPosY(r.nextInt(15));
                     obstacles.get(2).setPosY(r.nextInt(15));
-
                     terminal.clearScreen();
 
 
