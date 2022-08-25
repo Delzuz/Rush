@@ -42,6 +42,7 @@ public class Main {
         terminal.flush();
 
         boolean continueReadingInput = true;
+        boolean continueReadingInput2 = true;
         while (continueReadingInput) {
             KeyStroke keyStroke = null;
             int index = 0;
@@ -114,12 +115,6 @@ public class Main {
 
             //borders
             }
-            if(player.x == 30 && player.x ==8)
-            {
-                continueReadingInput = false;
-                System.out.println("Quit1");
-                terminal.close();
-            }
             if(player.x == 0)
             {
                 continueReadingInput = false;
@@ -161,6 +156,116 @@ public class Main {
 
         }
         terminal.flush();
+        player = new Position(13,13);
+        terminal.setCursorPosition(player.x, player.y);
+        terminal.putCharacter(playerCharacter);
+
+        while (continueReadingInput2) {
+            KeyStroke keyStroke = null;
+            int index = 0;
+            int bombIndex = 0;
+
+            do {
+                index+=5;
+
+                // Bomb
+                bombIndex+=2;
+                if (bombIndex % 180 == 0) {
+                    Bombs bomb1 = new Bombs(10,10,terminal);
+                    bomb1.createBombs(player);
+                }
+                //First set of moving obstacles
+                if (index % 100==0) {
+                    continueReadingInput2 = handleObstacles1(obstacles1, player, terminal);
+                    if (!continueReadingInput2) {
+                        terminal.close();
+                        break;
+                    }
+                }
+                //Second set of moving obstacles
+                if (index % 100==0) {
+                    continueReadingInput2 = handleObstacles2(obstacles2, player, terminal);
+                    if (!continueReadingInput2) {
+                        terminal.close();
+                        break;
+                    }
+                }
+                // put wall method here
+                continueReadingInput2 = printWalls(player,terminal);
+
+                Thread.sleep(5);
+                keyStroke = terminal.pollInput();
+            }
+            while (keyStroke == null);
+
+
+            Position oldPosition = new Position(player.x, player.y);
+
+            switch (keyStroke.getKeyType()) {
+                case ArrowDown:
+                    player.y += 1;
+                    break;
+                case ArrowUp:
+                    player.y -= 1;
+                    break;
+                case ArrowRight:
+                    player.x += 1;
+                    break;
+                case ArrowLeft:
+                    player.x -= 1;
+                    break;
+            }
+
+            // Draw player
+            terminal.setCursorPosition(oldPosition.x, oldPosition.y);
+            terminal.putCharacter(' ');
+            terminal.setCursorPosition(player.x, player.y);
+            terminal.putCharacter(playerCharacter);
+
+
+
+            //Exit button
+            if (keyStroke.getKeyType() == Escape) {
+                continueReadingInput2 = false;
+                System.out.println("Quit");
+                terminal.close();
+
+                //borders
+            }
+
+            if(player.x == 0)
+            {
+                continueReadingInput2 = false;
+                System.out.println("Quit2");
+                terminal.close();
+            }
+            if(player.y == 0)
+            {
+                continueReadingInput2 = false;
+                System.out.println("Quit3");
+                terminal.close();
+            }
+            if(player.y == 14)
+            {
+                continueReadingInput2 = false;
+                System.out.println("Quit4");
+                terminal.close();
+            }
+            if(player.x == 59 && player.y ==7)
+            {
+
+                continueReadingInput2 = false;
+                System.out.println("Win!");
+
+            }
+            if(player.x == 60)
+            {
+                continueReadingInput2 = false;
+                System.out.println("Quit6");
+                terminal.close();
+            }
+
+        }
 
     }
     private static boolean printWalls(Position player,Terminal terminal)throws Exception
@@ -226,9 +331,6 @@ public class Main {
                     obstacles.get(2).setPosY(r.nextInt(14));
                     terminal.clearScreen();
 
-
-
-
                 }
             }
 
@@ -251,7 +353,6 @@ public class Main {
         return true;
     }
     private static boolean handleObstacles2 (List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {
-        int lvlClear = 0;
         for (Obstacles obstacle: obstacles) {
             Random r = new Random();
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
@@ -265,14 +366,10 @@ public class Main {
                     obstacles.get(1).setPosY(r.nextInt(15));
                     obstacles.get(2).setPosY(r.nextInt(15));
                     terminal.clearScreen();
-                    lvlClear++;
-
 
 
                 }
-                if (lvlClear == 3) {
-                    return false;
-                }
+
             }
 
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
