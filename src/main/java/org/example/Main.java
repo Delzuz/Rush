@@ -153,15 +153,14 @@ public class Main {
             }
 
         }
-
-        /*terminal.clearScreen();
+        terminal.clearScreen();
         String stringToText = "LEVEL 2";
         for (int i = 0; i < stringToText.length(); i++) {
             terminal.setCursorPosition(i, 3);
             terminal.putCharacter(stringToText.charAt(i));
 
         }
-        terminal.flush();*/
+        terminal.flush();
 
     }
     private static boolean printWalls(Position player,Terminal terminal)throws Exception
