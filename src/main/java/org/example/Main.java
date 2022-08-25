@@ -138,12 +138,20 @@ public class Main {
                 System.out.println("Quit4");
                 terminal.close();
             }
+            if(player.x == 59 && player.y ==7)
+            {
+
+                continueReadingInput = false;
+                System.out.println("Win!");
+
+            }
             if(player.x == 60)
             {
                 continueReadingInput = false;
-                System.out.println("Quit5");
+                System.out.println("Quit6");
                 terminal.close();
             }
+
         }
 
         /*terminal.clearScreen();
