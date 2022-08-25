@@ -20,7 +20,7 @@ public class Main {
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
         terminalFactory.setInitialTerminalSize(ts);
         Terminal terminal = terminalFactory.createTerminal();
-        
+
 
         terminal.setCursorVisible(false);
 
@@ -35,9 +35,9 @@ public class Main {
         obstacles1.add(new Obstacles(5,60,8,terminal));
 
         List<Obstacles> obstacles2 = new ArrayList<>();
-        obstacles2.add(new Obstacles(3,75,4,terminal));
-        obstacles2.add(new Obstacles(3,75,2,terminal));
-        obstacles2.add(new Obstacles(3,75,8,terminal));
+        obstacles2.add(new Obstacles(3,75,6,terminal));
+        obstacles2.add(new Obstacles(3,75,12,terminal));
+        obstacles2.add(new Obstacles(3,75,10,terminal));
 
         terminal.flush();
 
@@ -51,8 +51,8 @@ public class Main {
                 index+=5;
 
                 // Bomb
-                bombIndex+=5;
-                if (bombIndex % 100 == 0) {
+                bombIndex+=2;
+                if (bombIndex % 180 == 0) {
                     Bombs bomb1 = new Bombs(10,10,terminal);
                     bomb1.createBombs(player);
                 }
@@ -111,6 +111,8 @@ public class Main {
                 continueReadingInput = false;
                 System.out.println("Quit");
                 terminal.close();
+
+            //borders
             }
             if(player.x == 0)
             {
@@ -191,28 +193,35 @@ public class Main {
         return true;
     }
     private static boolean handleObstacles1 (List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {
+
         for (Obstacles obstacle: obstacles) {
             Random r = new Random();
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
             terminal.putCharacter(' ');
 
+
             if (obstacle.posX > 0) {
                 obstacle.posX--;
                 if (obstacle.posX == 0) {
                     obstacle.posX = 60;
-                    obstacles.get(0).setPosY(r.nextInt(15));
-                    obstacles.get(1).setPosY(r.nextInt(15));
-                    obstacles.get(2).setPosY(r.nextInt(15));
+                    obstacles.get(0).setPosY(r.nextInt(14));
+                    obstacles.get(1).setPosY(r.nextInt(14));
+                    obstacles.get(2).setPosY(r.nextInt(14));
                     terminal.clearScreen();
+
+
 
 
                 }
             }
 
+
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
             terminal.putCharacter('\u26dd');
 
         }
+
+
 
         terminal.flush();
         for (Obstacles obs: obstacles) {
@@ -225,6 +234,7 @@ public class Main {
         return true;
     }
     private static boolean handleObstacles2 (List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {
+        int lvlClear = 0;
         for (Obstacles obstacle: obstacles) {
             Random r = new Random();
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
@@ -238,8 +248,13 @@ public class Main {
                     obstacles.get(1).setPosY(r.nextInt(15));
                     obstacles.get(2).setPosY(r.nextInt(15));
                     terminal.clearScreen();
+                    lvlClear++;
 
 
+
+                }
+                if (lvlClear == 3) {
+                    return false;
                 }
             }
 
