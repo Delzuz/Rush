@@ -114,28 +114,34 @@ public class Main {
 
             //borders
             }
+            if(player.x == 30 && player.x ==8)
+            {
+                continueReadingInput = false;
+                System.out.println("Quit1");
+                terminal.close();
+            }
             if(player.x == 0)
             {
                 continueReadingInput = false;
-                System.out.println("Quit");
+                System.out.println("Quit2");
                 terminal.close();
             }
             if(player.y == 0)
             {
                 continueReadingInput = false;
-                System.out.println("Quit");
+                System.out.println("Quit3");
                 terminal.close();
             }
             if(player.y == 14)
             {
                 continueReadingInput = false;
-                System.out.println("Quit");
+                System.out.println("Quit4");
                 terminal.close();
             }
             if(player.x == 60)
             {
                 continueReadingInput = false;
-                System.out.println("Quit");
+                System.out.println("Quit5");
                 terminal.close();
             }
         }
@@ -175,7 +181,11 @@ public class Main {
                 terminal.setCursorPosition(0, row);
                 terminal.putCharacter(wallL);
             }
-            for (int row = 15; row > 0; row--) {
+            for (int row = 6; row > 0; row--) {
+                terminal.setCursorPosition(60, row);
+                terminal.putCharacter(wallRight);
+            }
+            for (int row = 8; row < 15; row++) {
                 terminal.setCursorPosition(60, row);
                 terminal.putCharacter(wallRight);
             }
