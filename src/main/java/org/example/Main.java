@@ -20,7 +20,7 @@ public class Main {
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory();
         terminalFactory.setInitialTerminalSize(ts);
         Terminal terminal = terminalFactory.createTerminal();
-        
+
 
         terminal.setCursorVisible(false);
 
@@ -35,13 +35,14 @@ public class Main {
         obstacles1.add(new Obstacles(5,60,8,terminal));
 
         List<Obstacles> obstacles2 = new ArrayList<>();
-        obstacles2.add(new Obstacles(3,75,4,terminal));
-        obstacles2.add(new Obstacles(3,75,2,terminal));
-        obstacles2.add(new Obstacles(3,75,8,terminal));
+        obstacles2.add(new Obstacles(3,75,6,terminal));
+        obstacles2.add(new Obstacles(3,75,12,terminal));
+        obstacles2.add(new Obstacles(3,75,10,terminal));
 
         terminal.flush();
 
         boolean continueReadingInput = true;
+        boolean continueReadingInput2 = true;
         while (continueReadingInput) {
             KeyStroke keyStroke = null;
             int index = 0;
@@ -51,8 +52,8 @@ public class Main {
                 index+=5;
 
                 // Bomb
-                bombIndex+=5;
-                if (bombIndex % 100 == 0) {
+                bombIndex+=2;
+                if (bombIndex % 180 == 0) {
                     Bombs bomb1 = new Bombs(10,10,terminal);
                     bomb1.createBombs(player);
                 }
@@ -111,41 +112,160 @@ public class Main {
                 continueReadingInput = false;
                 System.out.println("Quit");
                 terminal.close();
+
+            //borders
             }
             if(player.x == 0)
             {
                 continueReadingInput = false;
-                System.out.println("Quit");
+                System.out.println("Quit2");
                 terminal.close();
             }
             if(player.y == 0)
             {
                 continueReadingInput = false;
-                System.out.println("Quit");
+                System.out.println("Quit3");
                 terminal.close();
             }
             if(player.y == 14)
             {
                 continueReadingInput = false;
-                System.out.println("Quit");
+                System.out.println("Quit4");
                 terminal.close();
+            }
+            if(player.x == 59 && player.y ==7)
+            {
+
+                continueReadingInput = false;
+                System.out.println("Win!");
+
             }
             if(player.x == 60)
             {
                 continueReadingInput = false;
-                System.out.println("Quit");
+                System.out.println("Quit6");
                 terminal.close();
             }
-        }
 
-        /*terminal.clearScreen();
+        }
+        terminal.clearScreen();
         String stringToText = "LEVEL 2";
         for (int i = 0; i < stringToText.length(); i++) {
             terminal.setCursorPosition(i, 3);
             terminal.putCharacter(stringToText.charAt(i));
 
         }
-        terminal.flush();*/
+        terminal.flush();
+        player = new Position(13,13);
+        terminal.setCursorPosition(player.x, player.y);
+        terminal.putCharacter(playerCharacter);
+
+        while (continueReadingInput2) {
+            KeyStroke keyStroke = null;
+            int index = 0;
+            int bombIndex = 0;
+
+            do {
+                index+=5;
+
+                // Bomb
+                bombIndex+=2;
+                if (bombIndex % 180 == 0) {
+                    Bombs bomb1 = new Bombs(10,10,terminal);
+                    bomb1.createBombs(player);
+                }
+                //First set of moving obstacles
+                if (index % 100==0) {
+                    continueReadingInput2 = handleObstacles1(obstacles1, player, terminal);
+                    if (!continueReadingInput2) {
+                        terminal.close();
+                        break;
+                    }
+                }
+                //Second set of moving obstacles
+                if (index % 100==0) {
+                    continueReadingInput2 = handleObstacles2(obstacles2, player, terminal);
+                    if (!continueReadingInput2) {
+                        terminal.close();
+                        break;
+                    }
+                }
+                // put wall method here
+                continueReadingInput2 = printWalls(player,terminal);
+
+                Thread.sleep(5);
+                keyStroke = terminal.pollInput();
+            }
+            while (keyStroke == null);
+
+
+            Position oldPosition = new Position(player.x, player.y);
+
+            switch (keyStroke.getKeyType()) {
+                case ArrowDown:
+                    player.y += 1;
+                    break;
+                case ArrowUp:
+                    player.y -= 1;
+                    break;
+                case ArrowRight:
+                    player.x += 1;
+                    break;
+                case ArrowLeft:
+                    player.x -= 1;
+                    break;
+            }
+
+            // Draw player
+            terminal.setCursorPosition(oldPosition.x, oldPosition.y);
+            terminal.putCharacter(' ');
+            terminal.setCursorPosition(player.x, player.y);
+            terminal.putCharacter(playerCharacter);
+
+
+
+            //Exit button
+            if (keyStroke.getKeyType() == Escape) {
+                continueReadingInput2 = false;
+                System.out.println("Quit");
+                terminal.close();
+
+                //borders
+            }
+
+            if(player.x == 0)
+            {
+                continueReadingInput2 = false;
+                System.out.println("Quit2");
+                terminal.close();
+            }
+            if(player.y == 0)
+            {
+                continueReadingInput2 = false;
+                System.out.println("Quit3");
+                terminal.close();
+            }
+            if(player.y == 14)
+            {
+                continueReadingInput2 = false;
+                System.out.println("Quit4");
+                terminal.close();
+            }
+            if(player.x == 59 && player.y ==7)
+            {
+
+                continueReadingInput2 = false;
+                System.out.println("Win!");
+
+            }
+            if(player.x == 60)
+            {
+                continueReadingInput2 = false;
+                System.out.println("Quit6");
+                terminal.close();
+            }
+
+        }
 
     }
     private static boolean printWalls(Position player,Terminal terminal)throws Exception
@@ -173,7 +293,11 @@ public class Main {
                 terminal.setCursorPosition(0, row);
                 terminal.putCharacter(wallL);
             }
-            for (int row = 15; row > 0; row--) {
+            for (int row = 6; row > 0; row--) {
+                terminal.setCursorPosition(60, row);
+                terminal.putCharacter(wallRight);
+            }
+            for (int row = 8; row < 15; row++) {
                 terminal.setCursorPosition(60, row);
                 terminal.putCharacter(wallRight);
             }
@@ -191,28 +315,32 @@ public class Main {
         return true;
     }
     private static boolean handleObstacles1 (List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {
+
         for (Obstacles obstacle: obstacles) {
             Random r = new Random();
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
             terminal.putCharacter(' ');
 
+
             if (obstacle.posX > 0) {
                 obstacle.posX--;
                 if (obstacle.posX == 0) {
                     obstacle.posX = 60;
-                    obstacles.get(0).setPosY(r.nextInt(15));
-                    obstacles.get(1).setPosY(r.nextInt(15));
-                    obstacles.get(2).setPosY(r.nextInt(15));
+                    obstacles.get(0).setPosY(r.nextInt(14));
+                    obstacles.get(1).setPosY(r.nextInt(14));
+                    obstacles.get(2).setPosY(r.nextInt(14));
                     terminal.clearScreen();
-
 
                 }
             }
+
 
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
             terminal.putCharacter('\u26dd');
 
         }
+
+
 
         terminal.flush();
         for (Obstacles obs: obstacles) {
@@ -241,6 +369,7 @@ public class Main {
 
 
                 }
+
             }
 
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);

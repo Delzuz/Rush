@@ -18,8 +18,8 @@ public class Bombs {
     public void createBombs(Position player) throws IOException, InterruptedException {
 
             Random r1 = new Random();
-            x = r1.nextInt(15);
-            y = r1.nextInt(15);
+            x = r1.nextInt(58);
+            y = r1.nextInt(13);
 
             //final char bomb = 'O';
             terminal.setCursorPosition(x, y);

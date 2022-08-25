@@ -9,5 +9,8 @@
         <module name="Rush" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Test" target="18" />
+    </bytecodeTargetLevel>
   </component>
 </project>
