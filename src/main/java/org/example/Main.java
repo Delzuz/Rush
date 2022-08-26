@@ -178,7 +178,7 @@ public class Main {
                 index+=5;
 
                 // Bomb
-                bombIndex+=1;
+                bombIndex+=5;
 
                 if (bombIndex % 180 == 0) {
                     bombcount++;
@@ -324,7 +324,7 @@ public class Main {
                 index+=5;
 
                 // Bomb
-                bombIndex+=1;
+                bombIndex+=5;
 
                 if (bombIndex % 180 == 0) {
                     bombcount++;
@@ -558,9 +558,9 @@ public class Main {
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
             terminal.putCharacter(' ');
 
-            if (obstacle.posX > 0) {
+            if (obstacle.posX > -1) {
                 obstacle.posX--;
-                if (obstacle.posX == 0) {
+                if (obstacle.posX == -1) {
                     obstacle.posX = 60;
                     obstacles.get(0).setPosY(r.nextInt(15));
                     obstacles.get(1).setPosY(r.nextInt(15));
