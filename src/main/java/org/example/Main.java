@@ -551,6 +551,15 @@ public class Main {
             if (obs.posX == player.x && obs.posY == player.y) {
                 terminal.bell();
                 System.out.println("GAME OVER!");
+                String stringToText = "YOU HIT THE OBSTACLE! :(";
+                for (int i = 0; i < stringToText.length(); i++) {
+                    terminal.setCursorPosition(i+20, 3);
+                    terminal.putCharacter(stringToText.charAt(i));
+
+                }
+                terminal.flush();
+                Thread.sleep(4000);
+                terminal.close();
                 return false;
             }
         }
@@ -588,6 +597,15 @@ public class Main {
                 terminal.bell();
                 //terminal.setForegroundColor(TextColor.ANSI.RED);
                 System.out.println("GAME OVER!");
+                String stringToText = "YOU HIT THE OBSTACLE! :(";
+                for (int i = 0; i < stringToText.length(); i++) {
+                    terminal.setCursorPosition(i+20, 3);
+                    terminal.putCharacter(stringToText.charAt(i));
+
+                }
+                terminal.flush();
+                Thread.sleep(4000);
+                terminal.close();
                 return false;
             }
         }
