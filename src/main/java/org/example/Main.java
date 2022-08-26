@@ -53,43 +53,11 @@ public class Main {
         while (continueReadingInput) {
             KeyStroke keyStroke = null;
             int index = 0;
-            int bombIndex = 0;
-            int bombcount = 0;
-            Random r = new Random();
 
             do {
                 index+=5;
 
-                // Bomb
-                bombIndex+=1;
 
-                if (bombIndex % 180 == 0) {
-                    bombcount++;
-                    if (bombcount >= 1) {
-                        terminal.setCursorPosition(bombList.get(0).x, bombList.get(0).y);
-                        terminal.putCharacter('\u2622');
-                    }
-                    if (bombcount >= 2) {
-                        terminal.setCursorPosition(bombList.get(1).x, bombList.get(1).y);
-                        terminal.putCharacter('\u2622');
-                    }
-                    if (bombcount >= 3) {
-                        terminal.setCursorPosition(bombList.get(2).x, bombList.get(2).y);
-                        terminal.putCharacter('\u2622');
-                    }
-                    if (bombcount >= 4) {
-                        terminal.setCursorPosition(bombList.get(3).x, bombList.get(3).y);
-                        terminal.putCharacter('\u2622');
-                    }
-                    if (bombcount >= 5) {
-                        terminal.setCursorPosition(bombList.get(4).x, bombList.get(4).y);
-                        terminal.putCharacter('\u2622');
-                    }
-
-                }
-                for (Bombs bomb1: bombList) {
-                    bomb1.createBombs(player,bomb1);
-                }
 
                 //First set of moving obstacles
                 if (index % 100==0) {
@@ -198,15 +166,39 @@ public class Main {
             KeyStroke keyStroke = null;
             int index = 0;
             int bombIndex = 0;
-
+            int bombcount = 0;
             do {
                 index+=5;
 
                 // Bomb
-                bombIndex+=2;
+                bombIndex+=1;
+
                 if (bombIndex % 180 == 0) {
-                    Bombs bomb1 = new Bombs(10,10,terminal);
-                    bomb1.createBombs(player, bomb1);
+                    bombcount++;
+                    if (bombcount >= 1) {
+                        terminal.setCursorPosition(bombList.get(0).x, bombList.get(0).y);
+                        terminal.putCharacter('\u2622');
+                    }
+                    if (bombcount >= 2) {
+                        terminal.setCursorPosition(bombList.get(1).x, bombList.get(1).y);
+                        terminal.putCharacter('\u2622');
+                    }
+                    if (bombcount >= 3) {
+                        terminal.setCursorPosition(bombList.get(2).x, bombList.get(2).y);
+                        terminal.putCharacter('\u2622');
+                    }
+                    if (bombcount >= 4) {
+                        terminal.setCursorPosition(bombList.get(3).x, bombList.get(3).y);
+                        terminal.putCharacter('\u2622');
+                    }
+                    if (bombcount >= 5) {
+                        terminal.setCursorPosition(bombList.get(4).x, bombList.get(4).y);
+                        terminal.putCharacter('\u2622');
+                    }
+
+                }
+                for (Bombs bomb1: bombList) {
+                    bomb1.createBombs(player,bomb1);
                 }
                 //First set of moving obstacles
                 if (index % 100==0) {
