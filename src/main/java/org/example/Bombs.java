@@ -31,7 +31,7 @@ public class Bombs {
                 terminal.clearScreen();
                 String stringToText = "YOU HIT A BOMB & EXPLODED SUCKER :(!";
                 for (int i = 0; i < stringToText.length(); i++) {
-                    terminal.setCursorPosition(i+20, 3);
+                    terminal.setCursorPosition(i+15, 3);
                     terminal.putCharacter(stringToText.charAt(i));
 
                 }
