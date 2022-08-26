@@ -25,7 +25,7 @@ public class Main {
         terminal.setCursorVisible(false);
 
         char playerCharacter = '\u2603';
-        Position player = new Position(3,7);
+        Position player = new Position(2,7);
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
 
@@ -356,9 +356,11 @@ public class Main {
             terminal.putCharacter(' ');
 
 
-            if (obstacle.posX > 0) {
+            if (obstacle.posX > -1) {
                 obstacle.posX--;
-                if (obstacle.posX == 0) {
+
+                if (obstacle.posX == -1) {
+
                     obstacle.posX = 60;
                     obstacles.get(0).setPosY(r.nextInt(14));
                     obstacles.get(1).setPosY(r.nextInt(14));
@@ -366,7 +368,11 @@ public class Main {
                     //terminal.clearScreen();
 
                 }
+
+
             }
+
+
 
 
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
@@ -394,6 +400,7 @@ public class Main {
 
             if (obstacle.posX > 0) {
                 obstacle.posX--;
+                /*
                 if (obstacle.posX == 0) {
                     obstacle.posX = 60;
                     obstacles.get(0).setPosY(r.nextInt(15));
@@ -402,9 +409,14 @@ public class Main {
                     //terminal.clearScreen();
 
 
+
                 }
 
+                 */
+
             }
+
+
 
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
             terminal.putCharacter('\u26dd');
