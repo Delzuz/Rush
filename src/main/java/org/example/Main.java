@@ -39,6 +39,11 @@ public class Main {
         obstacles2.add(new Obstacles(3,75,12,terminal));
         obstacles2.add(new Obstacles(3,75,10,terminal));
 
+        List<Position> monsters = new ArrayList<>();
+        monsters.add(new Position(3, 3));
+        monsters.add(new Position(5, 14));
+
+
         ArrayList<Bombs> bombList = new ArrayList<>();
         bombList.add(new Bombs(15,5,terminal));
         bombList.add(new Bombs(19,9,terminal));
@@ -54,11 +59,23 @@ public class Main {
         while (continueReadingInput) {
             KeyStroke keyStroke = null;
             int index = 0;
+            int bombIndex = 0;
+            int monsterIndex = 0;
 
             Random r = new Random();
 
             do {
-                index+=5;
+                index += 5;
+                monsterIndex+=4;
+
+                if (monsterIndex % 100 == 0) {
+                    continueReadingInput = handleMonsters(monsters,player, terminal);
+                    if (!continueReadingInput) {
+                        terminal.close();
+                        break;
+                    }
+                }
+
 
                 //First set of moving obstacles
                 if (index % 100==0) {
@@ -448,14 +465,14 @@ public class Main {
 
         }
     }
-    private static boolean printWalls(Position player,Terminal terminal)throws Exception
-    {
+
+    private static boolean printWalls(Position player, Terminal terminal) throws Exception {
         final char wallL = '\u2344';
         final char wallRight = '\u2343';
         final char wallT = '\u234c';
         final char wallB = '\u2353';
         Position[] wallR = new Position[60];
-        for(int i = 0;i<60;i++){
+        for (int i = 0; i < 60; i++) {
             wallR[i] = new Position(60, 0);
         }
         // wall array to print
@@ -494,9 +511,10 @@ public class Main {
 
         return true;
     }
-    private static boolean handleObstacles1 (List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {
 
-        for (Obstacles obstacle: obstacles) {
+    private static boolean handleObstacles1(List<Obstacles> obstacles, Position player, Terminal terminal) throws Exception {
+
+        for (Obstacles obstacle : obstacles) {
             Random r = new Random();
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
             terminal.putCharacter(' ');
@@ -514,11 +532,7 @@ public class Main {
                     //terminal.clearScreen();
 
                 }
-
-
             }
-
-
 
 
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
@@ -576,12 +590,7 @@ public class Main {
         return true;
     }
 
-    public static void handleMonsters (Position player, Terminal terminal) throws IOException {
-        List<Position> monsters = new ArrayList<>();
-        monsters.add(new Position(3, 3));
-        monsters.add(new Position(23, 23));
-        monsters.add(new Position(23, 3));
-        monsters.add(new Position(3, 23));
+    public static boolean handleMonsters(List<Position> monsters, Position player, Terminal terminal) throws IOException {
 
         for (Position monster : monsters) {
             terminal.setCursorPosition(monster.x, monster.y);
@@ -597,11 +606,18 @@ public class Main {
             } else if (player.y < monster.y) {
                 monster.y--;
             }
-
             terminal.setCursorPosition(monster.x, monster.y);
-            terminal.putCharacter('X');
+            terminal.putCharacter('\u046A');
+
         }
+        for (Position monster : monsters) {
+            if (monster.x == player.x && monster.y == player.y) {
+                terminal.bell();
+                System.out.println("GAME OVER!");
+                return false;
 
+            }
+
+        } return true;
     }
-
 }
