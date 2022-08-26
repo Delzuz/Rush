@@ -64,6 +64,7 @@ public class Main {
             Random r = new Random();
 
             do {
+                terminal.setForegroundColor(TextColor.ANSI.YELLOW);
                 index+=5;
                 //First set of moving obstacles
                 if (index % 100==0) {
@@ -192,6 +193,7 @@ public class Main {
             int bombIndex = 0;
             int bombcount = 0;
             do {
+                terminal.setForegroundColor(TextColor.ANSI.GREEN);
                 index+=5;
 
                 // Bomb
@@ -354,6 +356,7 @@ public class Main {
             Random r = new Random();
 
             do {
+                terminal.setForegroundColor(TextColor.ANSI.RED);
                 index+=5;
 
                 // Bomb
