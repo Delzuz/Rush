@@ -31,14 +31,14 @@ RUSH
 
 
 Bugg lista
-
+-blinkadne skärm
 -förhindra inhållning av tagentknapp
-
+-väggarna fastnar i slutet av banan
 
 *Svårigheter
 
 -Obstacles att röra sig mot en
--få spelet att gå över till lvl 2 efter hinder 
+-få spelet att gå över till lvl 2 och 3 efter hinder 
 intervaller - bytte ut det till att gå till win
 -speed på alla mosnter/object
 -få allt att vara oberoende från varandra 
