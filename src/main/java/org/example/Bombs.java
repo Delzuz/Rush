@@ -5,8 +5,8 @@ import java.util.Random;
 import java.io.IOException;
 
 public class Bombs {
-    public static int x;
-    public static int y;
+    public int x;
+    public int y;
     public Terminal terminal;
 
     public Bombs(int x, int y, Terminal terminal){
@@ -15,21 +15,23 @@ public class Bombs {
         this.terminal = terminal;
     }
 
-    public void createBombs(Position player, int x,int y) throws IOException, InterruptedException {
+    public void createBombs(Position player, Bombs bomb) throws IOException, InterruptedException {
 
           /*  Random r1 = new Random();
             x = r1.nextInt(58);
-            y = r1.nextInt(13);*/
+            y = r1.nextInt(13);
 
             //final char bomb = 'O';
             terminal.setCursorPosition(x, y);
             terminal.putCharacter('\u2622');;
 
-            if (player.x == x && player.y == y) {
+           */
+
+            if (player.x == bomb.x && player.y == bomb.y) {
                 terminal.clearScreen();
                 String stringToText = "You hit a bomb sucker!";
                 for (int i = 0; i < stringToText.length(); i++) {
-                    terminal.setCursorPosition(i, 3);
+                    terminal.setCursorPosition(i+20, 3);
                     terminal.putCharacter(stringToText.charAt(i));
 
                 }
