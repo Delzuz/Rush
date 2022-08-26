@@ -25,7 +25,7 @@ public class Main {
         terminal.setCursorVisible(false);
 
         char playerCharacter = '\u2603';
-        Position player = new Position(2,7);
+        Position player = new Position(3,7);
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
 
@@ -44,7 +44,7 @@ public class Main {
         bombList.add(new Bombs(19,9,terminal));
         bombList.add(new Bombs(35,7,terminal));
         bombList.add(new Bombs(48,10,terminal));
-        bombList.add(new Bombs(58,13,terminal));
+        bombList.add(new Bombs(55,13,terminal));
 
         terminal.flush();
 
@@ -399,7 +399,7 @@ public class Main {
                     obstacles.get(0).setPosY(r.nextInt(15));
                     obstacles.get(1).setPosY(r.nextInt(15));
                     obstacles.get(2).setPosY(r.nextInt(15));
-                    terminal.clearScreen();
+                    //terminal.clearScreen();
 
 
                 }
