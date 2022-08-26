@@ -443,18 +443,20 @@ public class Main {
             }
             if(player.x == 59 && player.y ==7)
             {
-
-
-                System.out.println("Win!");
                 terminal.clearScreen();
-
-                String youWon = "YOU WON!";
+                String youWon = "YOU WON! :D";
                 for (int i = 0; i < youWon.length(); i++) {
                     terminal.setCursorPosition(i+20, 3);
                     terminal.putCharacter(youWon.charAt(i));
-
                 }
+                terminal.flush();
+                Thread.sleep(4000);
+                terminal.close();
                 continueReadingInput3 = false;
+                System.out.println("Win!");
+                terminal.clearScreen();
+
+
             }
             if(player.x == 60)
             {
@@ -464,6 +466,8 @@ public class Main {
             }
 
         }
+
+
     }
 
     private static boolean printWalls(Position player, Terminal terminal) throws Exception {
