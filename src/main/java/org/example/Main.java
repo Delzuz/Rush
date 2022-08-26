@@ -71,7 +71,7 @@ public class Main {
             terminal.putCharacter(die.charAt(i));
         }
         for (int i = 0; i < goodLuck.length(); i++) {
-            terminal.setCursorPosition(i+18, 8);
+            terminal.setCursorPosition(i+22, 8);
             terminal.putCharacter(goodLuck.charAt(i));
         }
         terminal.flush();
@@ -148,18 +148,40 @@ public class Main {
             //borders
             if(player.x == 0)
             {
+                terminal.clearScreen();
+                String walldead1 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                for (int i = 0; i < walldead1.length(); i++) {
+                    terminal.setCursorPosition(i+15, 3);
+                    terminal.putCharacter(walldead1.charAt(i));
+                }
+                terminal.flush();
+                Thread.sleep(2000);
                 continueReadingInput = false;
                 System.out.println("Quit2");
                 terminal.close();
             }
             if(player.y == 0)
-            {
+            {terminal.clearScreen();
+                String walldead1 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                for (int i = 0; i < walldead1.length(); i++) {
+                    terminal.setCursorPosition(i+15, 3);
+                    terminal.putCharacter(walldead1.charAt(i));
+                }
+                terminal.flush();
+                Thread.sleep(2000);
                 continueReadingInput = false;
                 System.out.println("Quit3");
                 terminal.close();
             }
             if(player.y == 14)
-            {
+            {terminal.clearScreen();
+                String walldead1 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                for (int i = 0; i < walldead1.length(); i++) {
+                    terminal.setCursorPosition(i+15, 3);
+                    terminal.putCharacter(walldead1.charAt(i));
+                }
+                terminal.flush();
+                Thread.sleep(2000);
                 continueReadingInput = false;
                 System.out.println("Quit4");
                 terminal.close();
@@ -172,7 +194,14 @@ public class Main {
 
             }
             if(player.x == 60)
-            {
+            { terminal.clearScreen();
+                String walldead4 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                for (int i = 0; i < walldead4.length(); i++) {
+                    terminal.setCursorPosition(i+15, 3);
+                    terminal.putCharacter(walldead4.charAt(i));
+                }
+                terminal.flush();
+                Thread.sleep(2000);
                 continueReadingInput = false;
                 System.out.println("Quit6");
                 terminal.close();
@@ -309,18 +338,42 @@ public class Main {
 
             if(player.x == 0)
             {
+                terminal.clearScreen();
+                String walldead1 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                for (int i = 0; i < walldead1.length(); i++) {
+                    terminal.setCursorPosition(i+15, 3);
+                    terminal.putCharacter(walldead1.charAt(i));
+                }
+                terminal.flush();
+                Thread.sleep(2000);
                 continueReadingInput2 = false;
                 System.out.println("Quit2");
                 terminal.close();
             }
             if(player.y == 0)
             {
+                terminal.clearScreen();
+                String walldead1 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                for (int i = 0; i < walldead1.length(); i++) {
+                    terminal.setCursorPosition(i+15, 3);
+                    terminal.putCharacter(walldead1.charAt(i));
+                }
+                terminal.flush();
+                Thread.sleep(2000);
                 continueReadingInput2 = false;
                 System.out.println("Quit3");
                 terminal.close();
             }
             if(player.y == 14)
             {
+                terminal.clearScreen();
+                String walldead1 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                for (int i = 0; i < walldead1.length(); i++) {
+                    terminal.setCursorPosition(i+15, 3);
+                    terminal.putCharacter(walldead1.charAt(i));
+                }
+                terminal.flush();
+                Thread.sleep(2000);
                 continueReadingInput2 = false;
                 System.out.println("Quit4");
                 terminal.close();
@@ -333,7 +386,14 @@ public class Main {
 
             }
             if(player.x == 60)
-            {
+            { terminal.clearScreen();
+                String walldead4 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                for (int i = 0; i < walldead4.length(); i++) {
+                    terminal.setCursorPosition(i+15, 3);
+                    terminal.putCharacter(walldead4.charAt(i));
+                }
+                terminal.flush();
+                Thread.sleep(2000);
                 continueReadingInput2 = false;
                 System.out.println("Quit6");
                 terminal.close();
@@ -483,18 +543,42 @@ public class Main {
 
             if(player.x == 0)
             {
+                terminal.clearScreen();
+                String walldead1 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                for (int i = 0; i < walldead1.length(); i++) {
+                    terminal.setCursorPosition(i+15, 3);
+                    terminal.putCharacter(walldead1.charAt(i));
+                }
+                terminal.flush();
+                Thread.sleep(2000);
                 continueReadingInput3 = false;
                 System.out.println("Quit2");
                 terminal.close();
             }
             if(player.y == 0)
             {
+                terminal.clearScreen();
+                String walldead2 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                for (int i = 0; i < walldead2.length(); i++) {
+                    terminal.setCursorPosition(i+15, 3);
+                    terminal.putCharacter(walldead2.charAt(i));
+                }
+                terminal.flush();
+                Thread.sleep(2000);
                 continueReadingInput3 = false;
                 System.out.println("Quit3");
                 terminal.close();
             }
             if(player.y == 14)
             {
+                terminal.clearScreen();
+                String walldead3 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                for (int i = 0; i < walldead3.length(); i++) {
+                    terminal.setCursorPosition(i+15, 3);
+                    terminal.putCharacter(walldead3.charAt(i));
+                }
+                terminal.flush();
+                Thread.sleep(2000);
                 continueReadingInput3 = false;
                 System.out.println("Quit4");
                 terminal.close();
@@ -504,7 +588,7 @@ public class Main {
                 terminal.clearScreen();
                 String youWon = "YOU WON! :D";
                 for (int i = 0; i < youWon.length(); i++) {
-                    terminal.setCursorPosition(i+25, 3);
+                    terminal.setCursorPosition(i+10, 3);
                     terminal.putCharacter(youWon.charAt(i));
                 }
                 terminal.flush();
@@ -517,7 +601,14 @@ public class Main {
 
             }
             if(player.x == 60)
-            {
+            { terminal.clearScreen();
+                String walldead4 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                for (int i = 0; i < walldead4.length(); i++) {
+                    terminal.setCursorPosition(i+15, 3);
+                    terminal.putCharacter(walldead4.charAt(i));
+                }
+                terminal.flush();
+                Thread.sleep(2000);
                 continueReadingInput3 = false;
                 System.out.println("Quit6");
                 terminal.close();
