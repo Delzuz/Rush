@@ -185,7 +185,7 @@ public class Main {
         terminal.clearScreen();
         String stringToText = "LEVEL 2";
         for (int i = 0; i < stringToText.length(); i++) {
-            terminal.setCursorPosition(i, 3);
+            terminal.setCursorPosition(i+20, 3);
             terminal.putCharacter(stringToText.charAt(i));
 
         }
