@@ -29,7 +29,7 @@ public class Bombs {
 
             if (player.x == bomb.x && player.y == bomb.y) {
                 terminal.clearScreen();
-                String stringToText = "You hit a bomb sucker!";
+                String stringToText = "YOU HIT A BOMB & EXPLODED :(!";
                 for (int i = 0; i < stringToText.length(); i++) {
                     terminal.setCursorPosition(i+20, 3);
                     terminal.putCharacter(stringToText.charAt(i));
