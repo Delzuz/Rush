@@ -31,9 +31,9 @@ RUSH
 
 
 Bugg lista
-
+-blinkadne skärm
 -förhindra inhållning av tagentknapp
-
+-väggarna fastnar i slutet av banan
 
 *Svårigheter
 -Obstacles att röra sig mot en
