@@ -50,14 +50,15 @@ public class Main {
 
         boolean continueReadingInput = true;
         boolean continueReadingInput2 = true;
+        boolean continueReadingInput3 = true;
         while (continueReadingInput) {
             KeyStroke keyStroke = null;
             int index = 0;
 
+            Random r = new Random();
+
             do {
                 index+=5;
-
-
 
                 //First set of moving obstacles
                 if (index % 100==0) {
@@ -162,6 +163,7 @@ public class Main {
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
 
+        //start på lvl 2
         while (continueReadingInput2) {
             KeyStroke keyStroke = null;
             int index = 0;
@@ -292,7 +294,159 @@ public class Main {
             }
 
         }
+        terminal.clearScreen();
+        String stringToText3 = "LEVEL 3";
+        for (int i = 0; i < stringToText3.length(); i++) {
+            terminal.setCursorPosition(i+20, 3);
+            terminal.putCharacter(stringToText3.charAt(i));
 
+        }
+        terminal.flush();
+        player = new Position(2,7);
+        terminal.setCursorPosition(player.x, player.y);
+        terminal.putCharacter(playerCharacter);
+
+        // start på lvl 3
+        while (continueReadingInput3) {
+            KeyStroke keyStroke = null;
+            int index = 0;
+            int bombIndex = 0;
+            int bombcount = 0;
+            Random r = new Random();
+
+            do {
+                index+=5;
+
+                // Bomb
+                bombIndex+=1;
+
+                if (bombIndex % 180 == 0) {
+                    bombcount++;
+                    if (bombcount >= 1) {
+                        terminal.setCursorPosition(bombList.get(0).x, bombList.get(0).y);
+                        terminal.putCharacter('\u2622');
+                    }
+                    if (bombcount >= 2) {
+                        terminal.setCursorPosition(bombList.get(1).x, bombList.get(1).y);
+                        terminal.putCharacter('\u2622');
+                    }
+                    if (bombcount >= 3) {
+                        terminal.setCursorPosition(bombList.get(2).x, bombList.get(2).y);
+                        terminal.putCharacter('\u2622');
+                    }
+                    if (bombcount >= 4) {
+                        terminal.setCursorPosition(bombList.get(3).x, bombList.get(3).y);
+                        terminal.putCharacter('\u2622');
+                    }
+                    if (bombcount >= 5) {
+                        terminal.setCursorPosition(bombList.get(4).x, bombList.get(4).y);
+                        terminal.putCharacter('\u2622');
+                    }
+
+                }
+                for (Bombs bomb1: bombList) {
+                    bomb1.createBombs(player,bomb1);
+                }
+                //First set of moving obstacles
+                if (index % 100==0) {
+                    continueReadingInput3 = handleObstacles1(obstacles1, player, terminal);
+                    if (!continueReadingInput3) {
+                        terminal.close();
+                        break;
+                    }
+                }
+                //Second set of moving obstacles
+                if (index % 100==0) {
+                    continueReadingInput3 = handleObstacles2(obstacles2, player, terminal);
+                    if (!continueReadingInput3) {
+                        terminal.close();
+                        break;
+                    }
+                }
+                // put wall method here
+                continueReadingInput3 = printWalls(player,terminal);
+
+                Thread.sleep(5);
+                keyStroke = terminal.pollInput();
+            }
+            while (keyStroke == null);
+
+
+            Position oldPosition = new Position(player.x, player.y);
+
+            switch (keyStroke.getKeyType()) {
+                case ArrowDown:
+                    player.y += 1;
+                    break;
+                case ArrowUp:
+                    player.y -= 1;
+                    break;
+                case ArrowRight:
+                    player.x += 1;
+                    break;
+                case ArrowLeft:
+                    player.x -= 1;
+                    break;
+            }
+
+            // Draw player
+            terminal.setCursorPosition(oldPosition.x, oldPosition.y);
+            terminal.putCharacter(' ');
+            terminal.setCursorPosition(player.x, player.y);
+            terminal.putCharacter(playerCharacter);
+
+
+
+            //Exit button
+            if (keyStroke.getKeyType() == Escape) {
+                continueReadingInput3 = false;
+                System.out.println("Quit");
+                terminal.close();
+
+                //borders
+            }
+
+            if(player.x == 0)
+            {
+                continueReadingInput3 = false;
+                System.out.println("Quit2");
+                terminal.close();
+            }
+            if(player.y == 0)
+            {
+                continueReadingInput3 = false;
+                System.out.println("Quit3");
+                terminal.close();
+            }
+            if(player.y == 14)
+            {
+                continueReadingInput3 = false;
+                System.out.println("Quit4");
+                terminal.close();
+            }
+            if(player.x == 59 && player.y ==7)
+            {
+
+
+                System.out.println("Win!");
+                terminal.clearScreen();
+
+                String youWon = "YOU WON!";
+                for (int i = 0; i < youWon.length(); i++) {
+                    terminal.setCursorPosition(i+20, 3);
+                    terminal.putCharacter(youWon.charAt(i));
+
+                }
+                continueReadingInput3 = false;
+            }
+            if(player.x == 60)
+            {
+                continueReadingInput3 = false;
+                System.out.println("Quit6");
+                terminal.close();
+            }
+
+        }
     }
     private static boolean printWalls(Position player,Terminal terminal)throws Exception
     {
@@ -392,7 +546,6 @@ public class Main {
 
             if (obstacle.posX > 0) {
                 obstacle.posX--;
-                /*
                 if (obstacle.posX == 0) {
                     obstacle.posX = 60;
                     obstacles.get(0).setPosY(r.nextInt(15));
@@ -404,11 +557,7 @@ public class Main {
 
                 }
 
-                 */
-
             }
-
-
 
             terminal.setCursorPosition(obstacle.posX, obstacle.posY);
             terminal.putCharacter('\u26dd');
