@@ -31,11 +31,9 @@ RUSH
 
 
 Bugg lista
--Fixa system exit när man dör så man kan 
-skriva ut game over
+
 -förhindra inhållning av tagentknapp
--skärmen blinkar
--fixa så obstacles inte åker genom väggarna 
+
 
 *Svårigheter
 -Obstacles att röra sig mot en
