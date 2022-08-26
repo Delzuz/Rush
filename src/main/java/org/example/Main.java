@@ -39,6 +39,13 @@ public class Main {
         obstacles2.add(new Obstacles(3,75,12,terminal));
         obstacles2.add(new Obstacles(3,75,10,terminal));
 
+        ArrayList<Bombs> bombList = new ArrayList<>();
+        bombList.add(new Bombs(15,5,terminal));
+        bombList.add(new Bombs(19,9,terminal));
+        bombList.add(new Bombs(35,7,terminal));
+        bombList.add(new Bombs(48,10,terminal));
+        bombList.add(new Bombs(58,13,terminal));
+
         terminal.flush();
 
         boolean continueReadingInput = true;
@@ -47,26 +54,41 @@ public class Main {
             KeyStroke keyStroke = null;
             int index = 0;
             int bombIndex = 0;
+            int bombcount = 0;
+            Random r = new Random();
 
             do {
                 index+=5;
 
                 // Bomb
-                bombIndex+=2;
-                ArrayList<Bombs> bombList = new ArrayList<>();
+                bombIndex+=1;
+
                 if (bombIndex % 180 == 0) {
-                    Bombs bomb1 = new Bombs(10,10,terminal);
-                    bomb1.createBombs(player,5,9);
-                    bombList.add(bomb1);
+                    bombcount++;
+                    if (bombcount >= 1) {
+                        terminal.setCursorPosition(bombList.get(0).x, bombList.get(0).y);
+                        terminal.putCharacter('\u2622');
+                    }
+                    if (bombcount >= 2) {
+                        terminal.setCursorPosition(bombList.get(1).x, bombList.get(1).y);
+                        terminal.putCharacter('\u2622');
+                    }
+                    if (bombcount >= 3) {
+                        terminal.setCursorPosition(bombList.get(2).x, bombList.get(2).y);
+                        terminal.putCharacter('\u2622');
+                    }
+                    if (bombcount >= 4) {
+                        terminal.setCursorPosition(bombList.get(3).x, bombList.get(3).y);
+                        terminal.putCharacter('\u2622');
+                    }
+                    if (bombcount >= 5) {
+                        terminal.setCursorPosition(bombList.get(4).x, bombList.get(4).y);
+                        terminal.putCharacter('\u2622');
+                    }
 
                 }
                 for (Bombs bomb1: bombList) {
-                    if (bomb1.x == player.x && bomb1.y == player.y) {
-                        terminal.bell();
-                        //terminal.setForegroundColor(TextColor.ANSI.RED);
-                        System.out.println("GAME OVER!");
-                        continueReadingInput = false;
-                    }
+                    bomb1.createBombs(player,bomb1);
                 }
 
                 //First set of moving obstacles
@@ -184,7 +206,7 @@ public class Main {
                 bombIndex+=2;
                 if (bombIndex % 180 == 0) {
                     Bombs bomb1 = new Bombs(10,10,terminal);
-                    bomb1.createBombs(player, 5,4);
+                    bomb1.createBombs(player, bomb1);
                 }
                 //First set of moving obstacles
                 if (index % 100==0) {
@@ -341,7 +363,7 @@ public class Main {
                     obstacles.get(0).setPosY(r.nextInt(14));
                     obstacles.get(1).setPosY(r.nextInt(14));
                     obstacles.get(2).setPosY(r.nextInt(14));
-                    terminal.clearScreen();
+                    //terminal.clearScreen();
 
                 }
             }
