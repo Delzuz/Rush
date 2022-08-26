@@ -40,8 +40,8 @@ public class Main {
         obstacles2.add(new Obstacles(3,75,10,terminal));
 
         List<Position> monsters = new ArrayList<>();
-        monsters.add(new Position(3, 3));
-        monsters.add(new Position(5, 14));
+        monsters.add(new Position(50, 13));
+        monsters.add(new Position(44, 14));
 
 
         ArrayList<Bombs> bombList = new ArrayList<>();
@@ -625,6 +625,7 @@ public class Main {
                 monster.y--;
             }
             terminal.setCursorPosition(monster.x, monster.y);
+            terminal.setForegroundColor(TextColor.ANSI.RED);
             terminal.putCharacter('\u046A');
 
         }
