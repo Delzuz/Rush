@@ -27,11 +27,10 @@ public class Main {
         char playerCharacter = '\u2603';
         Position player = new Position(2,7);
         terminal.setCursorPosition(player.x, player.y);
-        terminal.putCharacter(playerCharacter);
 
         List<Obstacles> obstacles1 = new ArrayList<>();
         obstacles1.add(new Obstacles(5,60,4,terminal));
-        obstacles1.add(new Obstacles(5,60,2,terminal));
+        obstacles1.add(new Obstacles(5,60,6,terminal));
         obstacles1.add(new Obstacles(5,60,8,terminal));
 
         List<Obstacles> obstacles2 = new ArrayList<>();
@@ -56,6 +55,29 @@ public class Main {
         boolean continueReadingInput = true;
         boolean continueReadingInput2 = true;
         boolean continueReadingInput3 = true;
+
+        terminal.flush();
+        Thread.sleep(500);
+
+        String welcome = "WELCOME TO RUSH";
+        String die = "GET READY TO DIE :)";
+        String goodLuck = "GOOD LUCK!";
+        for (int i = 0; i < welcome.length(); i++) {
+            terminal.setCursorPosition(i+20, 4);
+            terminal.putCharacter(welcome.charAt(i));
+        }
+        for (int i = 0; i < die.length(); i++) {
+            terminal.setCursorPosition(i+18, 6);
+            terminal.putCharacter(die.charAt(i));
+        }
+        for (int i = 0; i < goodLuck.length(); i++) {
+            terminal.setCursorPosition(i+18, 8);
+            terminal.putCharacter(goodLuck.charAt(i));
+        }
+        terminal.flush();
+        Thread.sleep(2000);
+
+
         while (continueReadingInput) {
             KeyStroke keyStroke = null;
             int index = 0;
@@ -337,7 +359,7 @@ public class Main {
         terminal.clearScreen();
         String stringToText3 = "LEVEL 3";
         for (int i = 0; i < stringToText3.length(); i++) {
-            terminal.setCursorPosition(i+20, 3);
+            terminal.setCursorPosition(i+25, 3);
             terminal.putCharacter(stringToText3.charAt(i));
 
         }
@@ -482,7 +504,7 @@ public class Main {
                 terminal.clearScreen();
                 String youWon = "YOU WON! :D";
                 for (int i = 0; i < youWon.length(); i++) {
-                    terminal.setCursorPosition(i+20, 3);
+                    terminal.setCursorPosition(i+25, 3);
                     terminal.putCharacter(youWon.charAt(i));
                 }
                 terminal.flush();
