@@ -60,23 +60,11 @@ public class Main {
             KeyStroke keyStroke = null;
             int index = 0;
             int bombIndex = 0;
-            int monsterIndex = 0;
 
             Random r = new Random();
 
             do {
-                index += 5;
-                monsterIndex+=4;
-
-                if (monsterIndex % 100 == 0) {
-                    continueReadingInput = handleMonsters(monsters,player, terminal);
-                    if (!continueReadingInput) {
-                        terminal.close();
-                        break;
-                    }
-                }
-
-
+                index+=5;
                 //First set of moving obstacles
                 if (index % 100==0) {
                     continueReadingInput = handleObstacles1(obstacles1, player, terminal);
@@ -329,6 +317,7 @@ public class Main {
             int index = 0;
             int bombIndex = 0;
             int bombcount = 0;
+            int monsterIndex = 0;
             Random r = new Random();
 
             do {
@@ -363,6 +352,17 @@ public class Main {
                 }
                 for (Bombs bomb1: bombList) {
                     bomb1.createBombs(player,bomb1);
+                }
+
+                // Monster
+                monsterIndex+=4;
+
+                if (monsterIndex % 100 == 0) {
+                    continueReadingInput = handleMonsters(monsters,player, terminal);
+                    if (!continueReadingInput) {
+                        terminal.close();
+                        break;
+                    }
                 }
                 //First set of moving obstacles
                 if (index % 100==0) {
@@ -590,7 +590,7 @@ public class Main {
         return true;
     }
 
-    public static boolean handleMonsters(List<Position> monsters, Position player, Terminal terminal) throws IOException {
+    public static boolean handleMonsters(List<Position> monsters, Position player, Terminal terminal) throws Exception {
 
         for (Position monster : monsters) {
             terminal.setCursorPosition(monster.x, monster.y);
@@ -614,6 +614,15 @@ public class Main {
             if (monster.x == player.x && monster.y == player.y) {
                 terminal.bell();
                 System.out.println("GAME OVER!");
+                String stringToText = "YOU GOT EATEN! :(";
+                for (int i = 0; i < stringToText.length(); i++) {
+                    terminal.setCursorPosition(i+20, 3);
+                    terminal.putCharacter(stringToText.charAt(i));
+
+                }
+                terminal.flush();
+                Thread.sleep(4000);
+                terminal.close();
                 return false;
 
             }
