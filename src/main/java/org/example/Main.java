@@ -113,8 +113,8 @@ public class Main {
                 System.out.println("Quit");
                 terminal.close();
 
-            //borders
             }
+            //borders
             if(player.x == 0)
             {
                 continueReadingInput = false;
