@@ -157,12 +157,21 @@ public class Main {
 
         }
         terminal.clearScreen();
+        String passedLvl1 = "YOU PASSED LEVEL 1!\n GET READY FOR LEVEL 2!";
+        for (int i = 0; i < passedLvl1.length(); i++) {
+            terminal.setCursorPosition(i+10, 3);
+            terminal.putCharacter(passedLvl1.charAt(i));
+
+        }terminal.flush();Thread.sleep(2000);
+        terminal.clearScreen();
         String stringToText = "LEVEL 2";
         for (int i = 0; i < stringToText.length(); i++) {
             terminal.setCursorPosition(i+20, 3);
             terminal.putCharacter(stringToText.charAt(i));
 
         }
+        terminal.flush();
+        Thread.sleep(2000);
         terminal.flush();
         player = new Position(2,7);
         terminal.setCursorPosition(player.x, player.y);
@@ -443,18 +452,20 @@ public class Main {
             }
             if(player.x == 59 && player.y ==7)
             {
-
-
-                System.out.println("Win!");
                 terminal.clearScreen();
-
-                String youWon = "YOU WON!";
+                String youWon = "YOU WON! :D";
                 for (int i = 0; i < youWon.length(); i++) {
                     terminal.setCursorPosition(i+20, 3);
                     terminal.putCharacter(youWon.charAt(i));
-
                 }
+                terminal.flush();
+                Thread.sleep(4000);
+                terminal.close();
                 continueReadingInput3 = false;
+                System.out.println("Win!");
+                terminal.clearScreen();
+
+
             }
             if(player.x == 60)
             {
@@ -464,6 +475,8 @@ public class Main {
             }
 
         }
+
+
     }
 
     private static boolean printWalls(Position player, Terminal terminal) throws Exception {
