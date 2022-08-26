@@ -25,7 +25,7 @@ public class Main {
         terminal.setCursorVisible(false);
 
         char playerCharacter = '\u2603';
-        Position player = new Position(13,13);
+        Position player = new Position(2,7);
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
 
@@ -53,10 +53,22 @@ public class Main {
 
                 // Bomb
                 bombIndex+=2;
+                ArrayList<Bombs> bombList = new ArrayList<>();
                 if (bombIndex % 180 == 0) {
                     Bombs bomb1 = new Bombs(10,10,terminal);
-                    bomb1.createBombs(player);
+                    bomb1.createBombs(player,5,9);
+                    bombList.add(bomb1);
+
                 }
+                for (Bombs bomb1: bombList) {
+                    if (bomb1.x == player.x && bomb1.y == player.y) {
+                        terminal.bell();
+                        //terminal.setForegroundColor(TextColor.ANSI.RED);
+                        System.out.println("GAME OVER!");
+                        continueReadingInput = false;
+                    }
+                }
+
                 //First set of moving obstacles
                 if (index % 100==0) {
                     continueReadingInput = handleObstacles1(obstacles1, player, terminal);
@@ -156,7 +168,7 @@ public class Main {
 
         }
         terminal.flush();
-        player = new Position(13,13);
+        player = new Position(2,7);
         terminal.setCursorPosition(player.x, player.y);
         terminal.putCharacter(playerCharacter);
 
@@ -172,7 +184,7 @@ public class Main {
                 bombIndex+=2;
                 if (bombIndex % 180 == 0) {
                     Bombs bomb1 = new Bombs(10,10,terminal);
-                    bomb1.createBombs(player);
+                    bomb1.createBombs(player, 5,4);
                 }
                 //First set of moving obstacles
                 if (index % 100==0) {

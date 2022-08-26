@@ -15,11 +15,11 @@ public class Bombs {
         this.terminal = terminal;
     }
 
-    public void createBombs(Position player) throws IOException, InterruptedException {
+    public void createBombs(Position player, int x,int y) throws IOException, InterruptedException {
 
-            Random r1 = new Random();
+          /*  Random r1 = new Random();
             x = r1.nextInt(58);
-            y = r1.nextInt(13);
+            y = r1.nextInt(13);*/
 
             //final char bomb = 'O';
             terminal.setCursorPosition(x, y);
