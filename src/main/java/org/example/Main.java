@@ -157,16 +157,24 @@ public class Main {
 
         }
         terminal.clearScreen();
-        String passedLvl1 = "YOU PASSED LEVEL 1!\n GET READY FOR LEVEL 2!";
-        for (int i = 0; i < passedLvl1.length(); i++) {
-            terminal.setCursorPosition(i+10, 3);
-            terminal.putCharacter(passedLvl1.charAt(i));
 
-        }terminal.flush();Thread.sleep(2000);
+        String passedLvl1 = "YOU PASSED LEVEL 1!";
+        for (int i = 0; i < passedLvl1.length(); i++) {
+            terminal.setCursorPosition(i+20, 4);
+            terminal.putCharacter(passedLvl1.charAt(i));
+        }
+        String getReady = "GET READY FOR LEVEL 2!";
+        for (int i = 0; i < getReady.length(); i++) {
+            terminal.setCursorPosition(i+18, 5);
+            terminal.putCharacter(getReady.charAt(i));
+
+        }
+        terminal.flush();
+        Thread.sleep(2000);
         terminal.clearScreen();
         String stringToText = "LEVEL 2";
         for (int i = 0; i < stringToText.length(); i++) {
-            terminal.setCursorPosition(i+20, 3);
+            terminal.setCursorPosition(i+25, 4);
             terminal.putCharacter(stringToText.charAt(i));
 
         }
@@ -308,6 +316,22 @@ public class Main {
             }
 
         }
+        terminal.clearScreen();
+
+        String passedLvl2 = "YOU PASSED LEVEL 2!";
+        for (int i = 0; i < passedLvl2.length(); i++) {
+            terminal.setCursorPosition(i+20, 4);
+            terminal.putCharacter(passedLvl2.charAt(i));
+        }
+        String getReady3 = "GET READY FOR LEVEL 3!";
+        for (int i = 0; i < getReady3.length(); i++) {
+            terminal.setCursorPosition(i+18, 5);
+            terminal.putCharacter(getReady3.charAt(i));
+
+        }
+        terminal.flush();
+        Thread.sleep(2000);
+
         terminal.clearScreen();
         String stringToText3 = "LEVEL 3";
         for (int i = 0; i < stringToText3.length(); i++) {
