@@ -339,7 +339,7 @@ public class Main {
             if(player.x == 0)
             {
                 terminal.clearScreen();
-                String walldead1 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                String walldead1 = "ARE YOU STUPID?";
                 for (int i = 0; i < walldead1.length(); i++) {
                     terminal.setCursorPosition(i+15, 3);
                     terminal.putCharacter(walldead1.charAt(i));
@@ -353,7 +353,7 @@ public class Main {
             if(player.y == 0)
             {
                 terminal.clearScreen();
-                String walldead1 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                String walldead1 = "ARE YOU STUPID?";
                 for (int i = 0; i < walldead1.length(); i++) {
                     terminal.setCursorPosition(i+15, 3);
                     terminal.putCharacter(walldead1.charAt(i));
@@ -367,7 +367,7 @@ public class Main {
             if(player.y == 14)
             {
                 terminal.clearScreen();
-                String walldead1 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                String walldead1 = "ARE YOU STUPID?";
                 for (int i = 0; i < walldead1.length(); i++) {
                     terminal.setCursorPosition(i+15, 3);
                     terminal.putCharacter(walldead1.charAt(i));
@@ -387,7 +387,7 @@ public class Main {
             }
             if(player.x == 60)
             { terminal.clearScreen();
-                String walldead4 = "THERE IS A WALL THERE, ARE YOU BLIND?";
+                String walldead4 = "ARE YOU STUPID?";
                 for (int i = 0; i < walldead4.length(); i++) {
                     terminal.setCursorPosition(i+15, 3);
                     terminal.putCharacter(walldead4.charAt(i));
