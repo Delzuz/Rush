@@ -786,7 +786,7 @@ public class Main {
             if (monster.x == player.x && monster.y == player.y) {
                 terminal.bell();
                 System.out.println("GAME OVER!");
-                String stringToText = "YOU GOT EATEN! :(";
+                String stringToText = "YOU GOT EATEN! MOHAHA ;)";
                 for (int i = 0; i < stringToText.length(); i++) {
                     terminal.setCursorPosition(i+20, 3);
                     terminal.putCharacter(stringToText.charAt(i));
