@@ -61,6 +61,7 @@ public class Main {
 
         String welcome = "WELCOME TO RUSH";
         String die = "GET READY TO DIE :)";
+        String goodLuck = "GOOD LUCK!";
         for (int i = 0; i < welcome.length(); i++) {
             terminal.setCursorPosition(i+20, 4);
             terminal.putCharacter(welcome.charAt(i));
@@ -68,6 +69,10 @@ public class Main {
         for (int i = 0; i < die.length(); i++) {
             terminal.setCursorPosition(i+18, 6);
             terminal.putCharacter(die.charAt(i));
+        }
+        for (int i = 0; i < goodLuck.length(); i++) {
+            terminal.setCursorPosition(i+18, 8);
+            terminal.putCharacter(goodLuck.charAt(i));
         }
         terminal.flush();
         Thread.sleep(2000);
